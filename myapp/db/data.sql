@@ -26,5 +26,15 @@ CREATE TABLE productos (
     deletedAt           TIMESTAMP       ON UPDATE CURRENT_TIMESTAMP
 );
 
+CREATE TABLE comentarios (
+/* 	nombreColumna 		tipoDato 		Restricciones */
+    id_post 			INT 			UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    id_usuario 			INT 			UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    texto               VARCHAR(250) 	NOT NULL,
+    createdAt 			TIMESTAMP 		DEFAULT CURRENT_TIMESTAMP ,
+	updatedAt 			TIMESTAMP 		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deletedAt           TIMESTAMP       ON UPDATE CURRENT_TIMESTAMP
+);
+
 
 
