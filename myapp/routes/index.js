@@ -6,24 +6,14 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get("/", function (req, res) {
-  res.render('headerLogueado')
-});
+router.get("/", indexController.header);
 
-router.get("/", function (req, res) {
-  res.render('login')
-});
+router.get("/", indexController.login);
 
-router.get("/", function (req, res) {
-  res.render('register')
-});
+router.get("/", indexController.register);
 
-router.get("/", function (req, res) {
-  res.render('profile')
-});
+router.get("/", indexConreoller.profile);
 
-router.get("/", function (req, res) {
-  res.render('search-results')
-});
+router.get("/", indexController.buscar);
 
 module.exports = router;

@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var productoRouter = require("./routes/producto");
 
 var productoController = require("./controllers/productoController");
+var indexController = require("./controllers/indexController");
 var app = express();
 
 // view engine setup
