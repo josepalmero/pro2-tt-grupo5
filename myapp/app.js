@@ -10,6 +10,7 @@ var productoRouter = require("./routes/producto");
 
 var productoController = require("./controllers/productoController");
 var indexController = require("./controllers/indexController");
+var usuarioController = require("./controllers/usuarioController");
 var app = express();
 
 // view engine setup
