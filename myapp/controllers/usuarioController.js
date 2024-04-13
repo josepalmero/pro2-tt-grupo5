@@ -1,6 +1,3 @@
-const express = require("express");
-const users = require('../db/data');
-
 const usuarioController = {
     login: function (req, res) {
         res.render('login');},
