@@ -2,7 +2,16 @@ const express = require("express");
 const users = require('../db/data');
 
 const usuarioController = {
-    perfil_editado: function(req, res){
+    login: function (req, res) {
+        res.render('login');},
+    
+    register: function (req, res) {
+        res.render('register');},
+
+    profile:  function (req, res) {
+        res.render('profile');},
+
+    profile_edit: function(req, res){
         res.render("profile-edit")},
 };
 

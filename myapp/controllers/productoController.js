@@ -2,10 +2,10 @@ const express = require("express");
 const producto = require("../db/data");
 
 const productoController = {
-    producto: function(req, res){
+    product: function(req, res){
         res.render("product");},
     
-    producto_add: function(req, res){
+    product_add: function(req, res){
         res.render("product-add");},
 };
 
