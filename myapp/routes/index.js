@@ -9,6 +9,6 @@ router.get('/', function(req, res, next) {
 
 router.get("/", indexController.header);
 
-router.get("/", indexController.search);
+router.get("/search", indexController.search);
 
 module.exports = router;
