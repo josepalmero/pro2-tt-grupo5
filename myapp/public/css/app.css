@@ -68,12 +68,13 @@ hr {
 /*====== Main Header ======*/
 .main-header {
   padding: 15px 0;
-  background-color: var(#ffffff);
+  background-color: var(white);
 }
 
 .main-header_home-link {
   width: 100px;
-  margin: 10px;
+  border-radius: 150px;
+  overflow: hidden;
 }
 
 .main-header_credit-link {
