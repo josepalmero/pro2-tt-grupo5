@@ -56,4 +56,6 @@ let data = {
         texto: '' ,
     },
 
-}
+};
+
+module.exports = data
