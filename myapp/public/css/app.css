@@ -68,10 +68,14 @@ hr {
 /*====== Main Header ======*/
 .main-header {
   padding: 15px 0;
-  background-color: var(--yellow);
+  background-color: var(#ffffff);
 }
 
-.main-header_home-link,
+.main-header_home-link {
+  width: 100px;
+  margin: 10px;
+}
+
 .main-header_credit-link {
   display: block;
 }
