@@ -8,11 +8,11 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get("/", usuarioController.login);
+router.get("/login", usuarioController.login);
 
-router.get("/", usuarioController.register);
+router.get("/register", usuarioController.register);
 
-router.get("/", usuarioController.profile);
+router.get("/prfile", usuarioController.profile);
 
 router.get("/users", usuarioController.profile_edit);
 
