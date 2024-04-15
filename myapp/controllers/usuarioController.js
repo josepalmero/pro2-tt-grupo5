@@ -1,3 +1,5 @@
+const data = require("../db/data");
+
 const usuarioController = {
     login: function (req, res) {
         res.render('login');},
