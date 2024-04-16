@@ -10,9 +10,9 @@ const productoController = {
     },
       
         
-        productDetail: function(req, res){
-            res.render("product"),{productos: data.productos};
-        },
+    productDetail: function(req, res){
+        res.render("product"),{productos: data.productos};
+    },
 };
 
 module.exports = productoController;
