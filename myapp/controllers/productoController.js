@@ -11,7 +11,7 @@ const productoController = {
       
         
         productDetail: function(req, res){
-            res.render("product");
+            res.render("product"), {productos: data.productos};
         },
 };
 
