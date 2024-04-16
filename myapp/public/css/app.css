@@ -72,8 +72,7 @@ hr {
 }
 
 .main-header_home-link {
-  width: 100px;
-  border-radius: 150px;
+  width: 130px;
   overflow: hidden;
 }
 
@@ -145,7 +144,7 @@ hr {
 }
 
 .logout:hover{
-  color: #1259c3;
+  color: #c31212;
 }
 
 .left-navbar a,
@@ -274,7 +273,7 @@ hr {
 }
 
 .footer-data i {
-  color: var(--light-blue);
+  color: var(red);
   font-size: 3.5em;
 }
 
@@ -475,7 +474,7 @@ textarea.form-input {
 }
 
 .btn{
-  background-color: #1259c3;
+  background-color: red;
   padding: 10px 20px;
   border-radius: 4px;
   color: #fff;
@@ -513,7 +512,7 @@ textarea.form-input {
 
   .left-navbar a:hover,
   .right-navbar a:hover {
-    color: var(--light-blue);
+    color: var(red);
   }
 
   .left-navbar li {
