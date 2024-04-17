@@ -2,9 +2,8 @@ const data = require("../db/data")
 
 const indexController = {
     header: function (req, res) {
-        res.render('index', {
-            productos: data.productos
-        });},
+        res.render('index', {productos: data.productos});
+    },
     
     headerLogueado: function(req, res){
         res.render("headerLogueado");
