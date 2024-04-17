@@ -8,7 +8,7 @@ const usuarioController = {
         res.render('register');},
 
     profile:  function (req, res) {
-        res.render('profile' , {  usuario: data.usuario, productos: data.productos });
+        res.render('profile' , { usuario: data.usuario, productos: data.productos });
     },
 
     profile_edit: function(req, res){

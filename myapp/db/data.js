@@ -1,11 +1,8 @@
 let data = {
     usuario: {
-        email: " ",
-        usuario: " ",
-        contrasenia: " ",
-        fecha_de_nacimiento: " ",
-        dni: " ",
-        foto_de_perfil: " ",
+        email: "mariagomez@gmail.com",
+        usuario: "Maria Gomez",
+        fecha_de_nacimiento: "27/03/04",
     },
 
     productos: [{
