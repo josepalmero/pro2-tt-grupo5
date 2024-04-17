@@ -10,7 +10,8 @@ const indexController = {
     },
 
     search: function (req, res) {
-        res.render('search-results');},
+        res.render('search-results', {productos: data.productos});
+    },
 };
 
 module.exports = indexController;
