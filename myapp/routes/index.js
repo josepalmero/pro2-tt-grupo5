@@ -6,7 +6,7 @@ const indexController = require("../controllers/indexController");
 
 router.get("/", indexController.header);
 
-router.get("/header_logueado", indexController.header_logueado);
+router.get("/headerLogueado", indexController.headerLogueado);
 
 router.get("/search", indexController.search);
 

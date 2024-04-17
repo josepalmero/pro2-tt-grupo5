@@ -6,7 +6,7 @@ const indexController = {
             productos: data.productos
         });},
     
-    header_logueado: function(req, res){
+    headerLogueado: function(req, res){
         res.render("headerLogueado");
     },
 
