@@ -23,7 +23,9 @@ CREATE TABLE productos (
     descripcion         VARCHAR(250) 	NOT NULL,
     createdAt 			TIMESTAMP 		DEFAULT CURRENT_TIMESTAMP ,
 	updatedAt 			TIMESTAMP 		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deletedAt           TIMESTAMP       ON UPDATE CURRENT_TIMESTAMP
+    deletedAt           TIMESTAMP       ON UPDATE CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
 
 CREATE TABLE comentarios (
@@ -37,3 +39,4 @@ CREATE TABLE comentarios (
     
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
+
