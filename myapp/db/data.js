@@ -4,7 +4,7 @@ let data = {
         usuario: "Maria Gomez",
         contrasenia: "****",
         fecha_de_nacimiento: "27/03/04",
-        din: "46583910",
+        dni: "46583910",
         foto_de_perfil: "/images/foto-perfil.webp",
 
     },
@@ -28,7 +28,7 @@ let data = {
         id: 3 , 
         foto: '/images/products/Borcego_mex.png' ,
         nombre: 'Borcego Mex' ,
-        descripcion: 'Borregos de cuero, con apliques plateados, taco de 5,5 cm. ' ,
+        descripcion: 'Boregos de cuero, con apliques plateados, taco de 5,5 cm. ' ,
     }, {
         id: 4 , 
         foto: '/images/products/Bota_aliss_marron.png' ,
@@ -53,7 +53,7 @@ let data = {
         id: 8, 
         foto: '/images/products/Texana_cow.png' ,
         nombre: 'Texana cow' ,
-        descripcion: 'Botas negras de cuero combinadas en contratono beige. Altura de la caña 36,5 cm. y altura del taco 7 cm.' ,
+        descripcion: 'Texana negras de cuero combinadas en contratono beige. Altura de la caña 36,5 cm. y altura del taco 7 cm.' ,
     },{
         id: 9 , 
         foto: '/images/products/Bota_aliss_negra.png' ,
@@ -63,7 +63,7 @@ let data = {
         id: 10 , 
         foto: '/images/products/Borcego_tiki.png' ,
         nombre: 'Borcego Tiki' ,
-        descripcion: 'Borcegos de ecocuero y de charol opaco, ded caña alta.' ,
+        descripcion: 'Borcegos de ecocuero y de charol opaco, de caña alta.' ,
     },{
         id: 11 , 
         foto: '/images/products/Bota_clasica.png' ,
