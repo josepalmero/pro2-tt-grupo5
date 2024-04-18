@@ -27,23 +27,23 @@
 					</article>
 				<% } %>
 			
+			
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<% for( let index = 0; index < 5; index++ ) { %>
+						<% for( let index = 0; index < 4; index++ ) { %>
 							<article>
-								<img src="<%= comentarios.productos.comentarios[index].foto_de_perfil %>" alt="">
+								<img src="<%= comentarios[index].foto_de_perfil %>" alt="">
 								<div class="data">
 									<p class="user">
 										<strong> 
-											<a href="/users/profile"><%= comentarios.productos.comentarios[index].nombre_de_usuario %></a> 
-										</strong>
-										<%= comentarios.productos.comentarios[index].texto %>
+											<a href="/users/profile"><%= comentarios[index].nombre_de_usuario %></a> 
+										</strong><%= comentarios[index].texto %> 
+										
 									</p>
 								</div>
 							</article>
 						<% } %>
-
-
+							
 					</section>
 					<form class="form" action="/producto/product" method="get"> 
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
