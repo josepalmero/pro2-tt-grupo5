@@ -14,6 +14,6 @@ router.get("/register", usuarioController.register);
 
 router.get("/profile", usuarioController.profile);
 
-router.get("/users", usuarioController.profile_edit);
+router.get("/profile_edit", usuarioController.profile_edit);
 
 module.exports = router;

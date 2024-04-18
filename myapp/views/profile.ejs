@@ -11,12 +11,12 @@
 	<section class="info-usuario container products-wrapper">
 		<div class="row">
 				<div class="img-container offset-3 col-2">
-					<img src="" alt="foto de perfil" class="foto-perfil">
+					<img src="<%= usuario.foto_de_perfil %>" alt="foto de perfil" class="foto-perfil">
 				</div>
 				<div class="data-container col-6">
 						<div class="d-flex align-items-center ">
-							<h1 class="main-title">Nombre de usuario
-								<a href="/users">
+							<h1 class="main-title"><%= usuario.usuario %>
+								<a href="/users/profile_edit">
 									<i class="fas fa-cog"></i>
 								</a>
 							</h1>
@@ -32,6 +32,11 @@
 							<li>300 comentarios</li>
 						</ul>
 					</div>
+					<ul>
+						<li>
+							<a href="/users/profile_edit">Edita tu perfil <i class="fas fa-sign-in-alt"></i></a>
+						</li>
+					</ul>
 				</div>
 		</div>
 	</section>
