@@ -31,11 +31,14 @@
 					<section class="comments">
 						<% for( let index = 0; index < 5; index++ ) { %>
 							<article>
-								<img src="" alt="">
+								<img src="<%= comentarios.productos.comentarios[index].foto_de_perfil %>" alt="">
 								<div class="data">
 									<p class="user">
-									<strong> <a href="/users/profile">Nombre usuario: </a> </strong>
-									 Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora doloribus enim aspernatur fugit corrupti suscipit sit dolore magnam, praesentium explicabo inventore molestias facilis labore. Fugit ipsa mollitia odit inventore consequuntur.</p>
+										<strong> 
+											<a href="/users/profile"><%= comentarios.productos.comentarios[index].nombre_de_usuario %></a> 
+										</strong>
+										<%= comentarios.productos.comentarios[index].texto %>
+									</p>
 								</div>
 							</article>
 						<% } %>
