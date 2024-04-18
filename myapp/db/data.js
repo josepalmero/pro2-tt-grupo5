@@ -2,9 +2,9 @@ let data = {
     usuario: {
         email: "mariagomez@gmail.com",
         usuario: "Maria Gomez",
-        contrasenia: " ",
+        contrasenia: "****",
         fecha_de_nacimiento: "27/03/04",
-        din: " ",
+        din: "46583910",
         foto_de_perfil: "",
 
     },
@@ -69,14 +69,26 @@ let data = {
         foto: '/images/products/Bota_clasica.png' ,
         nombre: 'Bota Clasica' ,
         descripcion: 'Borcegos de cuero, con caña de 40 cm de alto y base de 5,5 cm de alto.' ,
-    },],
-
-    comentarios: {
-        id_post: '' , 
-        id_usuario: '' , 
-        texto: '' ,
     },
+    {comentarios: [{
+            nombre_de_usuario: "serefabb",
+            texto: "Me encantaron las botas!!!",
+            foto_de_perfil: "",
 
-};
+        },{
+            nombre_de_usuario: "josepal",
+            texto: "Muy lindo calzado y super canchero",
+            foto_de_perfil: "",
+        },{
+            nombre_de_usuario: "franfa",
+            texto: "Usos sus borcegos siempree",
+            foto_de_perfil: "",
+        },{
+            nombre_de_usuario: "verob",
+            texto: "Cuando vuevle a ingresar los Borcegos Aliss??",
+            foto_de_perfil: "",
+        },
+    ]},
+],};
 
 module.exports = data
