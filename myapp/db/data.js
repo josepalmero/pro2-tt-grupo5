@@ -4,7 +4,7 @@ let data = {
         usuario: "Maria Gomez",
         contrasenia: "****",
         fecha_de_nacimiento: "27/03/04",
-        din: "46583910",
+        dni: "46583910",
         foto_de_perfil: "/images/foto-perfil.webp",
 
     },
