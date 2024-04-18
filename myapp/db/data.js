@@ -5,8 +5,7 @@ let data = {
         contrasenia: "****",
         fecha_de_nacimiento: "27/03/04",
         dni: "46583910",
-        foto_de_perfil: "/images/foto-perfil.webp",
-
+        foto_de_perfil: "/images/users/foto-perfil.webp",
     },
 
     productos: [{
