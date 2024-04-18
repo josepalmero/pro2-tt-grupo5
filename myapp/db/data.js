@@ -5,7 +5,7 @@ let data = {
         contrasenia: "****",
         fecha_de_nacimiento: "27/03/04",
         din: "46583910",
-        foto_de_perfil: "",
+        foto_de_perfil: "/images/foto-perfil.webp",
 
     },
 
@@ -73,20 +73,20 @@ let data = {
     {comentarios: [{
             nombre_de_usuario: "serefabb",
             texto: "Me encantaron las botas!!!",
-            foto_de_perfil: "",
+            foto_de_perfil: "/images/foto-perfil.webp",
 
         },{
             nombre_de_usuario: "josepal",
             texto: "Muy lindo calzado y super canchero",
-            foto_de_perfil: "",
+            foto_de_perfil: "/images/foto-perfil.webp",
         },{
             nombre_de_usuario: "franfa",
             texto: "Usos sus borcegos siempree",
-            foto_de_perfil: "",
+            foto_de_perfil: "/images/foto-perfil.webp",
         },{
             nombre_de_usuario: "verob",
             texto: "Cuando vuevle a ingresar los Borcegos Aliss??",
-            foto_de_perfil: "",
+            foto_de_perfil: "/images/foto-perfil.webp",
         },
     ]},
 ],};

@@ -12,10 +12,9 @@ const usuarioController = {
             productos: data.productos
         });
     },
-    
-
     profile_edit: function(req, res){
-        res.render("profile-edit")},
+        res.render('profile-edit');
+    },
 };
 
 module.exports = usuarioController;
