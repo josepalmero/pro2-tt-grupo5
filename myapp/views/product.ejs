@@ -32,12 +32,12 @@
 					<section class="comments">
 						<% for( let index = 0; index < 4; index++ ) { %>
 							<article>
-								<img src="<%= comentarios[index].foto_de_perfil %>" alt="">
+								<img src="<%= productos[index].comentarios %>" alt="">
 								<div class="data">
 									<p class="user">
 										<strong> 
-											<a href="/users/profile"><%= comentarios[index].nombre_de_usuario %></a> 
-										</strong><%= comentarios[index].texto %> 
+											<a href="/users/profile"><%= productos[index].comentarios %></a> 
+										</strong><%= productos[index].comentarios %>
 										
 									</p>
 								</div>
