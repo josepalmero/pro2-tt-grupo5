@@ -18,6 +18,7 @@ CREATE TABLE usuarios (
 CREATE TABLE productos (
 /* 	nombreColumna 		tipoDato 		Restricciones */
     id 					INT 			UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    id_usuario 			INT 			UNSIGNED,
 	foto                VARCHAR(250) 	NOT NULL,
     nombre              VARCHAR(250) 	NOT NULL,
     descripcion         VARCHAR(250) 	NOT NULL,
@@ -41,13 +42,13 @@ CREATE TABLE comentarios (
 );
 
 
-INSERT INTO usuarios (id, email, contrasenia, fecha, dni, foto)
-VALUES(DEFAULT, 'marianoperez@gmail.com', 'contrasenia', '1990-03-17', 58325219, '/images/usuarios/mariano.JPG'),
-(DEFAULT, 'catasanchez@gmail.com', 'contrasenia', '1998-10-23', 95824326, '/images/usuarios/cata.JPG'),
-(DEFAULT, 'loli123@gmail.com', 'contrasenia', '2007-07-05', 47651352, '/images/usuarios/loli.JPG'),
-(DEFAULT, 'pedro.fernandez@gmail.com', 'contrasenia', '2001-06-19', 45423654, '/images/usuarios/pedro.JPG'),
-(DEFAULT, 'anitarodriguez@gmail.com', 'contrasenia', '2003-02-18', 54762897, '/images/usuarios/anita.PNG'),
-(DEFAULT, 'alan.martinez@gmail.com', 'contrasenia', '2006-09-25', 154622869, '/images/usuarios/alan.PNG');
+INSERT INTO usuarios (email, contrasenia, fecha, dni, foto)
+VALUES('marianoperez@gmail.com', 'contrasenia', '1990-03-17', 58325219, '/images/usuarios/mariano.JPG'),
+('catasanchez@gmail.com', 'contrasenia', '1998-10-23', 95824326, '/images/usuarios/cata.JPG'),
+('loli123@gmail.com', 'contrasenia', '2007-07-05', 47651352, '/images/usuarios/loli.JPG'),
+('pedro.fernandez@gmail.com', 'contrasenia', '2001-06-19', 45423654, '/images/usuarios/pedro.JPG'),
+('anitarodriguez@gmail.com', 'contrasenia', '2003-02-18', 54762897, '/images/usuarios/anita.PNG'),
+('alan.martinez@gmail.com', 'contrasenia', '2006-09-25', 154622869, '/images/usuarios/alan.PNG');
 
 INSERT INTO productos(id, foto, nombre, descripcion)
 VALUES(0, '/images/products/Borcego_aliss.png', 'Borcego Alis', 'Borcego de cuero, con apliques de color plateado. Alto de caña de 27 cm.'),
