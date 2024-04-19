@@ -23,21 +23,26 @@
 				<% for( let index = 0; index < 1; index++ ) { %>
 					<article class="col-12 col-lg-8 product-detail-info">
 						<img src="<%= productos[index].foto %>" alt="" class="product-detail-img">
-						<p class="product-detail-description"><%= productos[index].descripcion %></p>
+						<p class="product-detail-description">
+							<%= productos[index].descripcion %>
+						</p>
 					</article>
 				<% } %>
 			
 			
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<% for( let index = 0; index < 3; index++ ) { %>
+						<% for( let index = 0; index < 4; index++ ) { %>
 							<article>
-								<img src="<%= productos.comentarios[index].foto_de_perfil %>" alt="">
+								<img src="<%= productos[index].comentarios[index].foto_de_perfil %>" alt="">
 								<div class="data">
 									<p class="user">
 										<strong> 
-											<a href="/users/profile"><%= productos.comentarios[index].nombre_de_usuario %></a> 
-										</strong><%= productos.comentarios[index].texto %>
+											<a href="/users/profile"> 
+												<%= productos[index].comentarios[index].nombre_de_usuario %>
+											</a> 
+										</strong>
+										<%= productos[index].comentarios[index].texto %>
 									</p>
 								</div>
 							</article>

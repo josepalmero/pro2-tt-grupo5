@@ -27,7 +27,12 @@ let data = {
             nombre_de_usuario: "franfernandez9",
             texto: "Usos sus borcegos siempree",
             foto_de_perfil: "/images/usuarios/alan.JPG",
-            }
+            },
+            {
+            nombre_de_usuario: "nachidiaz23",
+            texto: "ME ENCANTANNN",
+            foto_de_perfil: "/images/usuarios/nachi.JPG",
+            },
         ]
     }, {
         id: 1, 
@@ -48,7 +53,12 @@ let data = {
             nombre_de_usuario: "pedro.lopez",
             texto: "Amo Sefina",
             foto_de_perfil: "/images/usuarios/pedro.JPG",
-            }
+            },
+            {
+            nombre_de_usuario: "juana.martinez",
+            texto: "Me encantan todas! No se cual llevarme",
+            foto_de_perfil: "/images/usuarios/nachi.JPG",
+            },
         ]
     }, {
         id: 2 , 
@@ -69,7 +79,12 @@ let data = {
             nombre_de_usuario: "franprez68",
             texto: "Una mas linda que la otra. Me encantan!",
             foto_de_perfil: "/images/usuarios/pedro.JPG",
-            }
+            },
+            {
+            nombre_de_usuario: "ameli976",
+            texto: "Una compra que no me arrepentire nunca!",
+            foto_de_perfil: "/images/usuarios/nachi.JPG",
+            },
         ]
     }, {
         id: 3 , 
@@ -90,7 +105,12 @@ let data = {
             nombre_de_usuario: "lolita_ramirez",
             texto: "Dios que hermosas",
             foto_de_perfil: "/images/usuarios/cata.JPG",
-            }
+            },
+            {
+            nombre_de_usuario: "catita78_",
+            texto: "Los super recomiendo siempre! Son cancheros y comodisimos!!!",
+            foto_de_perfil: "/images/usuarios/nachi.JPG",
+            },
         ]
     }, {
         id: 4 , 
@@ -108,6 +128,11 @@ let data = {
             foto_de_perfil: "/images/usuarios/anita.PNG",
             },
             {
+            nombre_de_usuario: "lola.finale",
+            texto: "Una belleza. Las uso siempre!",
+            foto_de_perfil: "/images/usuarios/nachi.JPG",
+            },
+            {
             nombre_de_usuario: "violelopez3",
             texto: "Estoy enamorada de mis nuevos borcego",
             foto_de_perfil: "/images/usuarios/loli.JPG",
@@ -122,6 +147,11 @@ let data = {
             nombre_de_usuario: "santos.maria",
             texto: "Increible calidad",
             foto_de_perfil: "/images/usuario/cata.JPG",
+            },
+            {
+            nombre_de_usuario: "fraqnui.santini",
+            texto: "Son todo lo que necesito en mi vida",
+            foto_de_perfil: "/images/usuarios/nachi.JPG",
             },
             {
             nombre_de_usuario: "lolitafernandez",
@@ -153,6 +183,11 @@ let data = {
             nombre_de_usuario: "maru1674",
             texto: "Muy bombaaa!",
             foto_de_perfil: "/images/usuario/anita.PNG",
+            },
+            {
+            nombre_de_usuario: "chanchi865",
+            texto: "Cancherisimas! Muy lindas.",
+            foto_de_perfil: "/images/usuario/alan.PNG",
             }
         ]
     }, {
@@ -174,6 +209,11 @@ let data = {
             nombre_de_usuario: "franchu.fernandez",
             texto: "Mis favss. Las uso siempre!",
             foto_de_perfil: "/images/usuario/cata.JPG",
+            },
+            {
+            nombre_de_usuario: "marcosdeni78",
+            texto: "Muy buena atencion chicas! Sus productos son bellos y de ccalidad.",
+            foto_de_perfil: "/images/usuario/alan.PNG",
             }
         ]
     },{
@@ -182,6 +222,11 @@ let data = {
         nombre: 'Texana cow' ,
         descripcion: 'Texana negras de cuero combinadas en contratono beige. Altura de la caña 36,5 cm. y altura del taco 7 cm.' ,
         comentarios: [{
+            nombre_de_usuario: "flor37_",
+            texto: "AYY QUIERO TODO. ME ENCANTAN.",
+            foto_de_perfil: "/images/usuario/loli.JPG",
+            },
+            {
             nombre_de_usuario: "pepo54",
             texto: "A mi hija le encantaron las botas!!!",
             foto_de_perfil: "/images/usuario/alan.PNG",
@@ -216,6 +261,11 @@ let data = {
             nombre_de_usuario: "pepilopez",
             texto: "Cada centavo gastado en ellas vale la pena",
             foto_de_perfil: "/images/usuario/mariano.JPG",
+            },
+            {
+            nombre_de_usuario: "pedritosanchez",
+            texto: "Muy buena calidad. Recomendadas!",
+            foto_de_perfil: "/images/usuario/pedro.JPG",
             }
         ]
     },{
@@ -232,6 +282,11 @@ let data = {
             nombre_de_usuario: "natilopez",
             texto: "Las tengo, son lo mas!",
             foto_de_perfil: "/images/usuario/loli.JPG",
+            },
+            {
+            nombre_de_usuario: "camila_fernandez",
+            texto: "Comodisimos! Los llevo siempre puestos.",
+            foto_de_perfil: "/images/usuario/cata.JPG",
             },
             {
             nombre_de_usuario: "franfa7",
@@ -258,7 +313,12 @@ let data = {
             nombre_de_usuario: "mairaperez",
             texto: "No pueden mas de hermosas",
             foto_de_perfil: "/images/usuario/cata.JPG",
-            }
+            },
+            {
+            nombre_de_usuario: "martinez.pablo",
+            texto: "Muy buenos productos!",
+            foto_de_perfil: "/images/usuario/mariano.JPG",
+            },
         ]
     },
 ],};
