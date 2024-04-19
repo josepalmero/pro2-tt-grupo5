@@ -63,7 +63,7 @@ VALUES(0, '/images/products/Borcego_aliss.png', 'Borcego Alis', 'Borcego de cuer
 (8, '/images/products/Texana_cow.png', 'Texana Cow', 'Texana negras de cuero combinadas en contratono beige. Altura de la caña 36,5 cm. y altura del taco 7 cm.');
 
 INSERT INTO comentarios(id_usuario, texto)
-VALUES('id' ,'comentario' ),
+VALUES('id' ,'Una mas linda que la otra. Me encantan!' ),
 (DEFAULT ,'Divinas!' ),
 (DEFAULT ,'Los mejores borcegos que he tenido!' ),
 (DEFAULT ,'Increible calidad' ),
