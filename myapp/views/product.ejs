@@ -30,15 +30,14 @@
 			
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<% for( let index = 0; index < 4; index++ ) { %>
+						<% for( let index = 0; index < 3; index++ ) { %>
 							<article>
-								<img src="<%= productos[index].comentarios%>" alt="">
+								<img src="<%= productos.comentarios[index].foto_de_perfil %>" alt="">
 								<div class="data">
 									<p class="user">
 										<strong> 
-											<a href="/users/profile"><%= productos[index].comentarios %></a> 
-										</strong><%= productos[index].comentarios %>
-										
+											<a href="/users/profile"><%= productos.comentarios[index].nombre_de_usuario %></a> 
+										</strong><%= productos.comentarios[index].texto %>
 									</p>
 								</div>
 							</article>
