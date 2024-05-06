@@ -1,8 +1,10 @@
 const data = require("../database/models")
 
+
 const indexController = {
     header: function (req, res) {
-        res.render('index', {productos: data.productos});
+        data.Producto.findAll()
+        res.render('index', {productos: null});
     },
     
     headerLogueado: function(req, res){
@@ -10,7 +12,7 @@ const indexController = {
     },
 
     search: function (req, res) {
-        res.render('search-results', {productos: data.productos});
+        res.render('search-results', {productos: null});
     },
 };
 
