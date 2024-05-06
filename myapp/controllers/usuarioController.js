@@ -1,4 +1,4 @@
-const data = require("../db/data");
+const data = require("../database/models");
 
 const usuarioController = {
     login: function (req, res) {
