@@ -6,10 +6,10 @@ module.exports = function (sequelize, dataTypes ) {
             primaryKey : true,
             type : dataTypes.INTEGER
         },
-        id_post: {
+        idPost: {
             type : dataTypes.INTEGER
         },
-        id_usuario: {
+        idUsuario: {
             type : dataTypes.INTEGER
         },
         texto: {
@@ -29,7 +29,7 @@ module.exports = function (sequelize, dataTypes ) {
     let config = {
         tableName: "comentarios",
         timestamps: false,
-        underscored: true
+        underscored: false
     }
     
     let Comentarios = sequelize.define(alias, cols, config);
