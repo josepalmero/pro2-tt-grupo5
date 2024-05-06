@@ -9,7 +9,7 @@ CREATE TABLE usuarios (
     contrasenia 	    VARCHAR(250) 	NOT NULL,		 	
     fecha               DATE 			NOT NULL,
     dni                 INT 			NOT NULL,
-    foto                VARCHAR(250) 	NOT NULL,
+    foto                VARCHAR(250) 	NOT NULL
     createdAt 			TIMESTAMP 		DEFAULT CURRENT_TIMESTAMP ,
 	updatedAt 			TIMESTAMP 		DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deletedAt           TIMESTAMP       ON UPDATE CURRENT_TIMESTAMP
