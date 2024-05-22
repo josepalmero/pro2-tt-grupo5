@@ -1,5 +1,4 @@
-const data = require("../database/models")
-
+const data = require("../database/models/Index")
 
 const indexController = {
     header: function (req, res) {

@@ -1,5 +1,6 @@
 module.exports = function (sequelize, dataTypes ) {
     let alias = "Movie";
+
     let cols = {
         id: {
             autoIncrement : true,
