@@ -1,5 +1,7 @@
 const data = require("../database/models");
 
+
+
 const usuarioController = {
     login: function (req, res) {
         res.render('login');},
@@ -12,6 +14,7 @@ const usuarioController = {
             productos: data.productos
         });
     },
+    
     profile_edit: function(req, res){
         res.render('profile-edit');
     },
