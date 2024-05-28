@@ -7,13 +7,13 @@ module.exports = function (sequelize, dataTypes ) {
             primaryKey : true,
             type : dataTypes.INTEGER
         },
-        nombre: {
-            type : dataTypes.STRING
-        },
         idUsuario: {
             type : dataTypes.INTEGER
         },
         foto: {
+            type : dataTypes.STRING
+        },
+        nombre: {
             type : dataTypes.STRING
         },
         descripcion: {
