@@ -7,10 +7,9 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+router.get("/register", usuarioController.register);
 
 router.get("/login", usuarioController.login);
-
-router.get("/register", usuarioController.register);
 
 router.get("/profile", usuarioController.profile);
 
