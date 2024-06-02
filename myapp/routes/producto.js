@@ -11,6 +11,9 @@ router.get("/product_add", productoController.product_add);
 /* POST capturar la info del formulario */ 
 router.post("/register", productoController.store);
 
+/* Editar un producto*/
+router.get("/product_edit", productoController.product_edit);
+
 /* buscar un producto */ 
 router.get("/busqueda", productoController.busqueda);
 

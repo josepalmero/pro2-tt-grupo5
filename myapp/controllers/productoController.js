@@ -33,6 +33,10 @@ const productoController = {
             /*res.render("product", {productos: data.productos});*/
         },
 
+    product_edit: function(req, res){
+        res.render('product_edit');
+    },
+
     busqueda: function(req, res){
         let busqueda = req.query.pelicula;
         
