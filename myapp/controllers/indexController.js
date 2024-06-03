@@ -1,9 +1,17 @@
-const data = require("../database/models/Index")
+const data = require("../database/models/index")
 
 const indexController = {
     header: function (req, res) {
-        data.Producto.findAll()
-        res.render('index', {productos: null});
+        data.Usuario.findAll()
+        .then(function(result) {
+
+            return res.send(result)
+            res.render('index', {productos: null});
+
+        }).catch(function(error) {
+            return console.log(error);
+        })
+
     },
     
     headerLogueado: function(req, res){
