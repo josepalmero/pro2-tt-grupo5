@@ -321,6 +321,24 @@ let data = {
             },
         ]
     },
-],};
+],
+
+filtrarPorColor : function(idEnviado) {
+    let filtrado = [];
+
+    for (let i = 0; i < this.lista.length; i++) {
+       if (idEnviado == this.lista[i].color) {
+            filtrado.push(this.lista[i]);
+       }
+        
+    }
+    return filtrado;
+}}
+
+
+
+
+
+
 
 module.exports = data
