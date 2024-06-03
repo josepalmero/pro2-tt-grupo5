@@ -29,8 +29,10 @@ const productoController = {
             .catch(function(err){
                 return console.log(err);
             });
-            
             /*res.render("product", {productos: data.productos});*/
+
+            /*modelo omentario*/
+            
         },
 
     product_edit: function(req, res){
