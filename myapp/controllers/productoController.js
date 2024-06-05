@@ -11,8 +11,6 @@ const productoController = {
         .catch(function(err){
             return console.log(err);
         }); 
-
-        /*res.render("product", {productos: data.productos});*/
     },
 
     product_add: function(req, res){
@@ -24,14 +22,11 @@ const productoController = {
 
             data.Producto.findByPk(idPelicula)
             .then(function(result){
-                return res.send(result)
                 return res.render("product", {producto: result});
             })
             .catch(function(err){
                 return console.log(err);
             });
-           
-            
         },
 
     product_edit: function(req, res){
@@ -47,7 +42,7 @@ const productoController = {
             }
         }
 
-        db.Movie.findOne(filtrado)
+        data.Producto.findOne(filtrado)
         .then((result) => {
             return res.send(result)
         }).catch((err) => {
