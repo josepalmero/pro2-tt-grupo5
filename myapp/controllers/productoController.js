@@ -20,7 +20,13 @@ const productoController = {
         productDetail: function(req, res){
             let idPelicula = req.params.idPelicula;
 
-            data.Producto.findByPk(idPelicula)
+            let criterio = {
+                include: [
+                    {association: "usuario"} // el alias de la relacion 
+                ]
+            }
+
+            data.Producto.findByPk(idPelicula, criterio)
             .then(function(result){
                 return res.render("product", {producto: result});
             })
