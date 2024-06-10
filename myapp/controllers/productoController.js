@@ -49,9 +49,9 @@ const productoController = {
         }
 
         data.Producto.findOne(filtrado)
-        .then((result) => {
+        .then(function(result){
             return res.send(result)
-        }).catch((err) => {
+        }).catch(function(err){
             return console.log(err);
         });
     },
