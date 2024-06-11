@@ -17,7 +17,7 @@ const productoController = {
         res.render("product-add");
     },
       
-        productDetail: function(req, res){
+      productDetail: function(req, res){
             let idPelicula = req.params.idPelicula;
 
             let criterio = {

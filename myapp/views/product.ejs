@@ -4,7 +4,11 @@
 	<%- include("./partials/head") %>
 <body>
 	<!-- Header -->
-	<%- include("./partials/header_deslogueado") %>
+	<% if (locals.usuarioLogueado != undefined) { %>
+		<%- include("./partials/headerLoguado") %>
+	<% } else {%>
+		<%- include("./partials/header_deslogueado") %>
+	<% } %>
 	<!-- /Header -->
 
 	<!-- product detail -->
@@ -41,7 +45,7 @@
 											<a href="/users/profile"> 
 												<%= productos[index].comentarios[index].nombre_de_usuario %>
 											</a>  
-											//* <%= producto.usuario.name %> *//
+											
 										</strong>
 										<%= productos[index].comentarios[index].texto %>
 									</p>

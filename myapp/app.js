@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
+const data = require("./database/models");
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -21,12 +23,44 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-/*Configuracion para session */
+/* configuracion para session */
 app.use(session({
   secret: "myapp",
   resave: false,
   saveUninitialized: true,
 }));
+
+/* de session a locals */
+/* haders si esta o no logueado*/
+app.use(function(req, res, next){
+  if(req.session.usuarioLogueado != undefined){
+    res.locals.usuarioLogueado = req.session.usuarioLogueado
+  }
+  return next()
+});
+
+/* configuracion de cookies*/
+app.use(function(req, res, next){
+  if (req.cookies.login != undefined && req.session.usuarioLogueado == undefined) {
+    //id del usuario que se logueo 
+    let id = req.cookies.login;
+    
+    data.Usuario.findByPk(id)
+    .then(function(result){
+      //recuperar la informacion del usuario una vez q vuleve a entrar
+      req.session.usuarioLogueado = result;
+      res.locals.usuarioLogueado
+
+      return next;
+
+    }).catch(function(err){
+      return console.log(err);
+    }); 
+
+  } else {
+    return next()
+  }
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
