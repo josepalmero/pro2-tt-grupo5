@@ -15,9 +15,9 @@ router.post("/register", productoController.store);
 router.get("/product_edit", productoController.product_edit);
 
 /* buscar un producto */ 
-router.get("/busqueda", productoController.busqueda);
+router.get("/search", productoController.search);  // chequear //
 
-/* POST  recuperar indo del form*/ 
+/* POST  recuperar info del form*/ 
 router.post("/update", productoController.update);
 
 module.exports = router;

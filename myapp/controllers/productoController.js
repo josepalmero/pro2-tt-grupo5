@@ -39,12 +39,12 @@ const productoController = {
         res.render('product_edit');
     },
 
-    busqueda: function(req, res){
-        let busqueda = req.query.pelicula;
+    search: function(req, res){
+        let busqueda = req.query.producto;  
         
         let filtrado = {
             where: {
-                title: {[op.like]: "%" + busqueda + "%"}
+                nombre: {[op.like]: "%" + busqueda + "%"}
             }
         }
 
