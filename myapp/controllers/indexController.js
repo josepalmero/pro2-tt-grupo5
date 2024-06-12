@@ -17,10 +17,6 @@ const indexController = {
     headerLogueado: function(req, res){
         res.render("headerLogueado");
     },
-
-    search: function (req, res) {
-        res.render('search-results', {productos: null});
-    },
 };
 
 module.exports = indexController;
