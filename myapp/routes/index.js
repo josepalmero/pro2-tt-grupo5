@@ -6,6 +6,4 @@ router.get("/", indexController.header);
 
 router.get("/headerLogueado", indexController.headerLogueado);
 
-router.get("/search", indexController.search);  // chequear //
-
 module.exports = router;
