@@ -11,7 +11,7 @@ router.get("/register", usuarioController.register);
 
 router.get("/login", usuarioController.login);
 
-router.get("/profile", usuarioController.prof-ile);
+router.get("/profile", usuarioController.profile);
 
 router.get("/profile_edit", usuarioController.profile_edit);
 
