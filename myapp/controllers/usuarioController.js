@@ -1,7 +1,9 @@
-const { where } = require("sequelize");
+// const   = require("sequelize");
 const data = require("../database/models");
 const bcryptjs = require("bcryptjs");
-const op = data.Sequelize.Op;
+
+
+//const op = data.Sequelize.Op;
 
 
 const usuarioController = {
@@ -9,22 +11,23 @@ const usuarioController = {
         let formulario = req.body;
        
         let filtro = {
-            where: [{email: formulario.email}]
+            where: [{email: form.email}]
         };
 
         data.Usuario.findOne()
             .then(function (result) {
                 if(result != null) {
-                    return res.render("login", { usuario: result });
+                    //return res.render("login", { usuario: result });
 
                     //session no anda, y cookies tampoco 
                     req.session.usuarioLogueado = result
                     if(formulario.rememberme != undefined){
                         res.cookie("login", result.id, {maxAge: 1000 * 60 *35})
+                        return res.redirect("/")
                     }
                     return res.redirect("/")
                 } else {
-                    return res.send("No hay mail parecidos a: " + formulario.email);
+                    return res.send("No hay mail parecidos a: " + filtro);
                 }
             })   
             .catch(function (err) {
@@ -41,12 +44,12 @@ const usuarioController = {
 
     //hashing
     register: function (req, res) {
-        let formulario = req.body;
+        let form = req.body;
         
         // usamos bcryptjs
         let usuario = {
-            email: formulario.email,
-            contrasenia: bcryptjs.hashSync(formulario.contrasenia, 10)
+            email: form.email,
+            contrasenia: bcryptjs.hashSync(form.contrasenia, 10)
         }
 
         data.Usuario.create()
