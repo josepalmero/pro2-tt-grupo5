@@ -39,6 +39,7 @@ const productoController = {
         res.render('product_edit');
     },
 
+    /*
     search: function(req, res){
         let busqueda = req.query.producto;  
         
@@ -61,7 +62,7 @@ const productoController = {
         }).catch(function(err){
             return console.log(err);
         });
-    },
+    }, */
 
     store: function(req, res) {
         let form = req.body;
