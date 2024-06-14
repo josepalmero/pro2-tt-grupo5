@@ -28,7 +28,7 @@ const productoController = {
 
             data.Producto.findByPk(idPelicula, criterio)
             .then(function(result){
-                return res.render("product", {producto: result});
+                return res.render("product", {productos: result});
             })
             .catch(function(err){
                 return console.log(err);
