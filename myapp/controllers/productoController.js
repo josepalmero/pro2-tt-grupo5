@@ -18,7 +18,7 @@ const productoController = {
     },
       
       productDetail: function(req, res){
-            let idProducto = req.params.idProducto;
+            let idProducto = req.params.id;
 
             let criterio = {
                 include: [
@@ -28,7 +28,8 @@ const productoController = {
 
             data.Producto.findByPk(idProducto, criterio)
             .then(function(result){
-                return res.render("product", {productos: result});
+                return res.send(result)
+                //return res.render("product", {productos: result}); //chequear el render 
             })
             .catch(function(err){
                 return console.log(err);
@@ -51,7 +52,7 @@ const productoController = {
               ]
         }
 
-        data.Producto.findOne(filtrado)
+        data.Producto.findAll(filtrado)
         .then(function(result){
             if (result) {
                 return res.send(result)
