@@ -18,30 +18,6 @@ const indexController = {
     headerLogueado: function(req, res){
         res.render("headerLogueado");
     },
-
-    search: function(req, res){
-        let busqueda = req.query.producto;  
-        
-        let filtrado = {
-            where: {
-                nombre: {[op.like]: "%" + busqueda + "%"}
-            },
-            order: [
-                ['id', 'DESC']
-              ]
-        }
-
-        data.Producto.findOne(filtrado)
-        .then(function(result){
-            if (result) {
-                return res.send(result)
-            } else {
-                return res.send('No hay resultados para su criterio de busqueda')
-            }
-        }).catch(function(err){
-            return console.log(err);
-        });
-    },
 };
 
 module.exports = indexController;
