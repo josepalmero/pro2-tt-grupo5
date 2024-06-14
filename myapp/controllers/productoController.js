@@ -1,4 +1,5 @@
 const data = require("../database/models");
+const op = data.Sequelize.Op;
 
 const productoController = {
     product: function(req, res){
@@ -61,7 +62,7 @@ const productoController = {
             return console.log(err);
         });
     },
-    
+
     store: function(req, res) {
         let form = req.body;
 

@@ -1,5 +1,4 @@
 const data = require("../database/models")
-const op = data.Sequelize.Op;
 
 const indexController = {
     header: function (req, res) {
