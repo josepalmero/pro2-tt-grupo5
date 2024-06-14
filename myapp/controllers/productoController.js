@@ -1,5 +1,4 @@
 const data = require("../database/models");
-const op = data.Sequelize.Op;
 
 const productoController = {
     product: function(req, res){
@@ -38,31 +37,6 @@ const productoController = {
     product_edit: function(req, res){
         res.render('product_edit');
     },
-
-    /*
-    search: function(req, res){
-        let busqueda = req.query.producto;  
-        
-        let filtrado = {
-            where: {
-                nombre: {[op.like]: "%" + busqueda + "%"}
-            },
-            order: [
-                ['id', 'DESC']
-              ]
-        }
-
-        data.Producto.findOne(filtrado)
-        .then(function(result){
-            if (result) {
-                return res.send(result)
-            } else {
-                return res.send('No hay resultados para su criterio de busqueda')
-            }
-        }).catch(function(err){
-            return console.log(err);
-        });
-    }, */
 
     store: function(req, res) {
         let form = req.body;
