@@ -1,6 +1,7 @@
 // const   = require("sequelize");
+const bcrypt = require("bcryptjs");
 const data = require("../database/models");
-const bcryptjs = require("bcryptjs");
+
 
 
 //const op = data.Sequelize.Op;
@@ -18,17 +19,32 @@ const usuarioController = {
             .then(function (result) {
                 if(result != null) {
                     //return res.render("login", { usuario: result });
-
+                
+                
                     //session no anda, y cookies tampoco 
-                    req.session.usuarioLogueado = result
-                    if(formulario.rememberme != undefined){
-                        res.cookie("login", result.id, {maxAge: 1000 * 60 *35})
-                        return res.redirect("/")
+                    //contrasenia hasheada
+                    let check = bcrypt.compareSync(form.contrasenia, result.contrasenia);
+
+                    if(check){
+                        req.session.usuarioLogueado = result
+                        if(formulario.rememberme != undefined){
+                            res.cookie("login", result.id, {maxAge: 1000 * 60 *35});
+                            return res.redirect("/");
+                        }else{
+                            return res.send("Error en la contrasenia");
+                        }
                     }
-                    return res.redirect("/")
                 } else {
                     return res.send("No hay mail parecidos a: " + filtro);
                 }
+
+                //controles de acceso si el usuario esta logueado
+                if(req.session.usuarioLogueado != undefined){
+                    return res.redirect("/");
+                } else{
+                    return res.render("/users/login");
+                }
+
             })   
             .catch(function (err) {
                 return console.log(err);
@@ -49,7 +65,7 @@ const usuarioController = {
         // usamos bcryptjs
         let usuario = {
             email: form.email,
-            contrasenia: bcryptjs.hashSync(form.contrasenia, 10)
+            contrasenia: bcrypt.hashSync(form.contrasenia, 10)
         }
 
         data.Usuario.create()
