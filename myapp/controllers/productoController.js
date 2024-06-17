@@ -23,8 +23,13 @@ const productoController = {
             let criterio = {
                 include: [
                     {association: "usuario"} // el alias de la relacion 
+                ],
+                include: [
+                    {association: "comentarios"} // relacion para los comentarios
                 ]
             }
+
+           
 
             data.Producto.findByPk(idProducto, criterio)
             .then(function(result){
