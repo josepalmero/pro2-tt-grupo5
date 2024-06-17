@@ -76,13 +76,14 @@ const productoController = {
         });
     },
 
+    // actualizar un producto en db a traves del form
     update: function(req, res) {
         let form = req.body;
-            let filtrado = {
-                where: {
-                    id: form.id
-                }
-        }
+         let filtrado = {
+            where: {
+                id: form.id
+            }
+        } 
 
         data.Producto.update(form, filtrado)
         .then(function(result){
@@ -91,8 +92,38 @@ const productoController = {
         .catch(function(err){
             return console.log(err);
         });
-    }
 
+        // control de acceso: editar producto
+        let usuarioLogueado = req.session.user 
+
+        data.Producto.findByPk( "chequear" )
+        if ( "id del usuario del producto" != usuarioLogueado.id) {
+            return res.send('No esta autorizado para editar este producto')
+        } else {
+            return res.redirect("/product/id/" + form.id)
+        }
+
+    },
+
+    // eliminar un producto de la base de datos
+    delete: function(req, res) {
+        let form = req.body
+        let filtrado = {
+            where: {
+                id: form.id
+            }
+        }
+
+        data.Producto.destroy(filtrado)
+        .then(function(result){
+            return res.redirect("/product/");
+        })
+        .catch(function(err){
+            return console.log(err);
+        });
+
+        // control de acceso: borrar producto
+    }
 };
 
 module.exports = productoController;

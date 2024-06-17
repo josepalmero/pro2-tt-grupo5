@@ -14,10 +14,14 @@ router.post("/register", productoController.store);
 /* Editar un producto*/
 router.get("/product_edit", productoController.product_edit);
 
-/* buscar un producto */ 
+/* Buscar un producto */ 
 router.get("/search", productoController.search);  
 
 /* POST  recuperar info del form*/ 
 router.post("/update", productoController.update);
+
+/* Eliminar un producto*/
+router.post("/delete", productoController.delete); // falta la ruta de eliminar producto
+
 
 module.exports = router;
