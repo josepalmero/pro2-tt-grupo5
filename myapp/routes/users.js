@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const usuarioController = require('../controllers/usuarioController');
+const {body} = require('express-validator');
+const validations= [
+  body("name")
+  .notEmpty().withMessage("Este campo es obligatorio").bail()
+]
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -8,6 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get("/register", usuarioController.register); 
+router.post('/register', validations, usuarioController.store);
 
 router.get("/login", usuarioController.login);
 

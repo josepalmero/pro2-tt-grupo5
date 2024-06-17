@@ -45,5 +45,12 @@ module.exports = function (sequelize, dataTypes ) {
         });
     }
 
+    Producto.associate = function(models) {
+        Producto.hasMany(models.Comentario , {
+            as: "comentarios", // el alias dela relacion
+            foreignKey: "idPost"
+        });
+    }
+
     return Producto;
 }
