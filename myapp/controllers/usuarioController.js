@@ -82,10 +82,7 @@ const usuarioController = {
     store: (req,  res ) => {
         let errors = validationResult(req)
         if (errors.isEmpty()) {
-
-        }
-
-        let form =req.body;
+            let form =req.body;
         let user = {
             name:form.name,
             email:form.email,
@@ -98,6 +95,7 @@ const usuarioController = {
         }).catch((err) => {
             return console.log(err);
         });
+        }
     },
     // romper si sale se la sesion
     logout: function(req, res){
