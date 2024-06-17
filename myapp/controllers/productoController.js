@@ -40,6 +40,7 @@ const productoController = {
         res.render('product_edit');
     },
 
+    //  buscador de productos
     search: function(req, res){
         let busqueda = req.query.producto;  
         
@@ -55,7 +56,7 @@ const productoController = {
         data.Producto.findAll(filtrado)
         .then(function(result){
             if (result) {
-                return res.send(result)
+                return res.send(result) // res.render
             } else {
                 return res.send('No hay resultados para su criterio de busqueda')
             }
@@ -87,20 +88,20 @@ const productoController = {
 
         data.Producto.update(form, filtrado)
         .then(function(result){
-            return res.redirect("/product/id/" + form.id);
+            return res.redirect("/product/id" + form.id);
         })
         .catch(function(err){
             return console.log(err);
         });
 
         // control de acceso: editar producto
-        let usuarioLogueado = req.session.user 
+        let usuarioLogueado = req.session.usuarioLogueado 
 
         data.Producto.findByPk( "chequear" )
         if ( "id del usuario del producto" != usuarioLogueado.id) {
             return res.send('No esta autorizado para editar este producto')
         } else {
-            return res.redirect("/product/id/" + form.id)
+            return res.redirect("/producto/detalle/:id" + form.id)
         }
 
     },
@@ -114,15 +115,15 @@ const productoController = {
             }
         }
 
+        // control de acceso: borrar producto
         data.Producto.destroy(filtrado)
         .then(function(result){
-            return res.redirect("/product/");
+            return res.redirect("/producto/detalle");
         })
         .catch(function(err){
             return console.log(err);
         });
 
-        // control de acceso: borrar producto
     }
 };
 
