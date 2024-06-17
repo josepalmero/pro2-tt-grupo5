@@ -42,6 +42,7 @@ const productoController = {
 
     //  buscador de productos
     search: function(req, res){
+       
         let busqueda = req.query.producto;  
         
         let filtrado = {
@@ -56,7 +57,7 @@ const productoController = {
         data.Producto.findAll(filtrado)
         .then(function(result){
             if (result) {
-                return res.send(result) // res.render
+                return res.render("search-results") // res.render
             } else {
                 return res.send('No hay resultados para su criterio de busqueda')
             }
