@@ -8,9 +8,34 @@ const data = require("../database/models");
 
 
 const usuarioController = {
+    //hashing
+    register: function (req, res) {
+        let form = req.body;
+        
+        // usamos bcryptjs
+        let usuario = {
+            email: form.email,
+            contrasenia: bcrypt.hashSync(form.contrasenia, 10)
+        }
+
+        data.Usuario.create()
+            .then(function (result) {
+                return res.redirect("/");
+            })
+            .catch(function (err) {
+                return console.log(err);
+            });
+
+        // el usuario logueado ya no puede acceder al form de registro
+        if (req.session.user != undefined) {
+            return res.redirect("/")
+        } else {
+            return res.render("register")
+        }
+    },
     login: function (req, res) {
         let formulario = req.body;
-       
+
         let filtro = {
             where: [{email: form.email}]
         };
@@ -56,25 +81,6 @@ const usuarioController = {
         req.session.destroy();
         res.clearCookie("login")
         return res.redirect("/")
-    },
-
-    //hashing
-    register: function (req, res) {
-        let form = req.body;
-        
-        // usamos bcryptjs
-        let usuario = {
-            email: form.email,
-            contrasenia: bcrypt.hashSync(form.contrasenia, 10)
-        }
-
-        data.Usuario.create()
-            .then(function (result) {
-                return res.redirect("/");
-            })
-            .catch(function (err) {
-                return console.log(err);
-            });
     },
 
     profile: function (req, res) {
