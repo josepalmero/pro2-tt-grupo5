@@ -13,9 +13,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.get("/register", usuarioController.register); 
+
 router.post('/register', validations, usuarioController.store);
 
-router.get("/login", usuarioController.login);
+router.post("/login", usuarioController.login);
+
+router.get("/login", usuarioController.loginForm);
 
 router.get("/profile", usuarioController.profile);
 
