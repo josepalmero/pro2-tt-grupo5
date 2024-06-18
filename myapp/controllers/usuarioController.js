@@ -66,7 +66,7 @@ const usuarioController = {
                     //contrasenia hasheada
                     console.log(result.contrasenia)
                     let check = bcrypt.compareSync(form.pass, result.contrasenia);
-                    check = form.pass === result.contrasenia
+                 
 
                     console.log(check, "pass")
                 
