@@ -33,8 +33,8 @@ const productoController = {
 
             data.Producto.findByPk(idProducto, criterio)
             .then(function(result){
-                return res.send(result)
-                //return res.render("product", {productos: result}); //chequear el render 
+                // return res.send(result)
+                return res.render("product", {productos: result}); //chequear el render 
             })
             .catch(function(err){
                 return console.log(err);
