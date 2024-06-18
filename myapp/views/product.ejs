@@ -4,17 +4,15 @@
 	<%- include("./partials/head") %>
 <body>
 	<!-- Header -->
-	<% if (locals.usuarioLogueado != undefined) { %>
-		<%- include("./partials/headerLoguado") %>
-	<% } else {%>
-		<%- include("./partials/header_deslogueado") %>
-	<% } %>
+	<%- include("./partials/header_deslogueado") %>
+	
+	
 	<!-- /Header -->
 
 	<!-- product detail -->
 	<!-- hacer un unico for -->
 	<div class="container products-wrapper">
-		<% for( let index = 0; index < 1; index++ ) { %>
+		
 			<div class="d-flex align-items-center">
 				<h2 class="products-title"><%= productos.nombre %></h2> 
 				<p class="product-detail-description">
@@ -51,8 +49,6 @@
 									</div>
 								</article>
 							<% } %>
-				
-				<% } %>
 			
 			
 				

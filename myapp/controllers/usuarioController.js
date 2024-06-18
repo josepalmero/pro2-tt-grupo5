@@ -6,15 +6,17 @@ const { Store } = require("express-session");
 const { localsName } = require("ejs");
 
 
-
-
-//const op = data.Sequelize.Op;
-
-
 const usuarioController = {
     //hashing
+
+    registerForm: function(req, res){
+        //trae el formulario de login 
+        return res.render("")
+
+    },
+
     register: function (req, res) {
-        let form = req.body;
+      /*  let form = req.body;
         
         // usamos bcryptjs
         let usuario = {
@@ -28,7 +30,7 @@ const usuarioController = {
             })
             .catch(function (err) {
                 return console.log(err);
-            });
+            });*/
 
         // el usuario logueado ya no puede acceder al form de registro
         if (req.session.user != undefined) {
@@ -37,31 +39,51 @@ const usuarioController = {
             return res.render("register")
         }
     },
+
+    loginForm: function(req, res){
+        //trae el formulario de login 
+        return res.render("login")
+
+    },
+    
+
     login: function (req, res) {
-        let formulario = req.body;
+        let form = req.body;
 
         let filtro = {
-            where: [{email: form.email}]
+            where: [{email: form.usuario}]
         };
+
 
         data.Usuario.findOne()
             .then(function (result) {
+                
                 if(result != null) {
                     //return res.render("login", { usuario: result });
                 
                 
                     //session no anda, y cookies tampoco 
                     //contrasenia hasheada
-                    let check = bcrypt.compareSync(form.contrasenia, result.contrasenia);
+                    console.log(result.contrasenia)
+                    let check = bcrypt.compareSync(form.pass, result.contrasenia);
+                 
+
+                    console.log(check, "pass")
+                
 
                     if(check){
                         req.session.usuarioLogueado = result
-                        if(formulario.rememberme != undefined){
+                        if(form.rememberme != undefined){
                             res.cookie("login", result.id, {maxAge: 1000 * 60 *35});
+                            console.log("bien")
+
                             return res.redirect("/");
+
                         }else{
-                            return res.send("Error en la contrasenia");
+                            return res.redirect("/");
                         }
+                    }else{
+                        return res.send("No hay contrasenia parecida a: " + filtro);
                     }
                 } else {
                     return res.send("No hay mail parecidos a: " + filtro);
@@ -89,7 +111,7 @@ const usuarioController = {
             password:bcrypt.hashSync(form.password, 10)
         }
 
-        db.User.create(User)
+        data.User.create(User)
         .then((result) => {
             return res.redirect("/users/login");
         }).catch((err) => {
@@ -97,6 +119,7 @@ const usuarioController = {
         });
         }
     },
+
     // romper si sale se la sesion
     logout: function(req, res){
         req.session.destroy();

@@ -33,7 +33,7 @@ const productoController = {
 
             data.Producto.findByPk(idProducto, criterio)
             .then(function(result){
-                // return res.send(result)
+                //return res.send(result)
                 return res.render("product", {productos: result}); //chequear el render 
             })
             .catch(function(err){
@@ -62,7 +62,8 @@ const productoController = {
         data.Producto.findAll(filtrado)
         .then(function(result){
             if (result) {
-                return res.render("search-results") // res.render
+                //return res.send(result)
+                return res.render("search-results", {productos: result}) 
             } else {
                 return res.send('No hay resultados para su criterio de busqueda')
             }
