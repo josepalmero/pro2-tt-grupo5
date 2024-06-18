@@ -29,12 +29,9 @@ const productoController = {
                 ]
             }
 
-           
-
             data.Producto.findByPk(idProducto, criterio)
             .then(function(result){
-                //return res.send(result)
-                return res.render("product", {productos: result}); //chequear el render 
+                return res.render("product", {productos: result}); 
             })
             .catch(function(err){
                 return console.log(err);
@@ -55,14 +52,13 @@ const productoController = {
                 nombre: {[op.like]: "%" + busqueda + "%"}
             },
             order: [
-                ['id', 'DESC']
+                [['createdAt', 'DESC']]
               ]
         }
 
         data.Producto.findAll(filtrado)
         .then(function(result){
             if (result) {
-                //return res.send(result)
                 return res.render("search-results", {productos: result}) 
             } else {
                 return res.send('No hay resultados para su criterio de busqueda')
@@ -102,7 +98,7 @@ const productoController = {
         });
 
         // control de acceso: editar producto
-        let usuarioLogueado = req.session.usuarioLogueado 
+        /* let usuarioLogueado = req.session.usuarioLogueado 
 
         data.Producto.findByPk( "chequear" )
         if ( "id del usuario del producto" != usuarioLogueado.id) {
@@ -110,7 +106,7 @@ const productoController = {
         } else {
             return res.redirect("/producto/detalle/:id" + form.id)
         }
-
+        */
     },
 
     // eliminar un producto de la base de datos

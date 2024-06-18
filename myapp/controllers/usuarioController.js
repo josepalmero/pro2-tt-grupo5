@@ -12,7 +12,6 @@ const usuarioController = {
     registerForm: function(req, res){
         //trae el formulario de login 
         return res.render("")
-
     },
 
     register: function (req, res) {
@@ -33,7 +32,7 @@ const usuarioController = {
             });*/
 
         // el usuario logueado ya no puede acceder al form de registro
-        if (req.session.user != undefined) {
+        if (req.session.usuarioLogueado != undefined) {
             return res.redirect("/")
         } else {
             return res.render("register")
@@ -43,10 +42,8 @@ const usuarioController = {
     loginForm: function(req, res){
         //trae el formulario de login 
         return res.render("login")
-
     },
     
-
     login: function (req, res) {
         let form = req.body;
 
@@ -54,53 +51,42 @@ const usuarioController = {
             where: [{email: form.usuario}]
         };
 
-
         data.Usuario.findOne()
             .then(function (result) {
                 
                 if(result != null) {
-                    //return res.render("login", { usuario: result });
-                
-                
                     //session no anda, y cookies tampoco 
                     //contrasenia hasheada
-                    console.log(result.contrasenia)
                     let check = bcrypt.compareSync(form.pass, result.contrasenia);
-                 
-
-                    console.log(check, "pass")
                 
-
                     if(check){
                         req.session.usuarioLogueado = result
                         if(form.rememberme != undefined){
                             res.cookie("login", result.id, {maxAge: 1000 * 60 *35});
-                            console.log("bien")
-
                             return res.redirect("/");
-
                         }else{
                             return res.redirect("/");
                         }
-                    }else{
+                    } else{
                         return res.send("No hay contrasenia parecida a: " + filtro);
                     }
                 } else {
                     return res.send("No hay mail parecidos a: " + filtro);
                 }
 
-                //controles de acceso si el usuario esta logueado
-                if(req.session.usuarioLogueado != undefined){
-                    return res.redirect("/");
-                } else{
-                    return res.render("/users/login");
-                }
+            //controles de acceso si el usuario esta logueado
+            if(req.session.usuarioLogueado != undefined){
+                return res.redirect("/");
+            } else{
+                return res.render("/users/login");
+            }
 
             })   
             .catch(function (err) {
                 return console.log(err);
             });
     },
+    
     store: (req,  res ) => {
         let errors = validationResult(req)
         if (errors.isEmpty()) {
@@ -108,7 +94,7 @@ const usuarioController = {
         let user = {
             name:form.name,
             email:form.email,
-            password:bcrypt.hashSync(form.password, 10)
+            password:bcrypt.hashSync(form.pass, 10)
         }
 
         data.User.create(User)
