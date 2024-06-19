@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const usuarioController = require('../controllers/usuarioController');
+const bcrypt = require("bcryptjs")
 const {body} = require('express-validator');
+
+//validaciones para el formulario de registro
 const validations= [
   body("email")
   .notEmpty().withMessage("Este campo no puede estar vacio").bail()
@@ -20,7 +23,10 @@ const validations= [
   .notEmpty().bail(),
   body("password")
   .notEmpty().withMessage("Este campo no puede estar vacio").bail()
-  .isLength({min:4}).withMessage("La contrasenia debe tener al menos 4 caracteres"),// me falta encryptar
+  .isLength({min:4}).withMessage("La contrasenia debe tener al menos 4 caracteres")
+  .custom(function(){
+    bcrypt.hashSync(form.password, 10)
+  }),
   body("fechaNacimiento")
   .isDate(),
   body("documento")
@@ -37,7 +43,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get("/register", usuarioController.register); 
-
 router.post('/register', validations, usuarioController.store);
 
 router.post("/login", usuarioController.login);

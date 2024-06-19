@@ -94,7 +94,7 @@ const usuarioController = {
         let user = {
             name:form.name,
             email:form.email,
-            password:bcrypt.hashSync(form.pass, 10)
+            password:bcrypt.hashSync(form.password, 10)
         }
 
         data.User.create(User)
