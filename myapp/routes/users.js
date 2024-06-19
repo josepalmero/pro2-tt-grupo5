@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const usuarioController = require('../controllers/usuarioController');
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcryptjs");
 const {body} = require('express-validator');
 
 //validaciones para el formulario de registro
@@ -35,8 +35,32 @@ const {body} = require('express-validator');
   body("fotoPerfil")
   ];*/
 
-  
-  
+
+
+//validaciones de login
+const validations = [
+  body("usuario")
+  .notEmpty().withMessage("Desbes ingresar tu email").bail()
+  .isEmail().withMessage("Debes completar con un email valido"),
+  body("pass")
+  .notEmpty().withMessage("Debes completar la contrasenia").bail()
+  .custom(function(value, {req}){
+    return data.Usuario.findOne({
+      where: {email: req.body.email}
+    })
+    .then(function(usuario){
+      if(usuario){
+        //compara las contrasenias, y se es falso mandar 
+        //el mensaje al usuario especificando el error 
+      }
+    })
+  })
+];
+
+
+
+
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -52,6 +76,9 @@ router.get("/login", usuarioController.loginForm);
 
 //ruta post del form de login
 router.post("/login", usuarioController.login);
+
+//valiodaciones del login
+router.post("/login", validations, usuarioController.storeLogin);
 
 router.get("/profile", usuarioController.profile);
 

@@ -18,6 +18,9 @@
 				<form class="form" action="/users/login" method="POST">
 					<div>
 						<input id="user" type="text" name="usuario" value="" placeholder="Usuario" required>
+						<% if (locals.errors && errors.usuario) { %>
+						 <p class="error"><%= errors.usuario.msg %></p>
+						<% } %>
 					</div>
 				 
 					<div>

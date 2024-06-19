@@ -1,7 +1,7 @@
 // const   = require("sequelize");
-const bcrypt = require("bcryptjs");
 const data = require("../database/models");
-const {validationResult}= require("express-validator");
+const bcrypt = require("bcryptjs");
+const {validationResult} = require("express-validator");
 const { Store } = require("express-session");
 const { localsName } = require("ejs");
 
@@ -46,7 +46,8 @@ const usuarioController = {
             return res.redirect("/");
         } else{
             return res.render("login");
-        }},
+        }
+    },
     
     login: function (req, res) {
         let form = req.body;
@@ -81,9 +82,33 @@ const usuarioController = {
                 return console.log(err);
             });
     },
+
+    storeLogin: function(req,res){
+        let errors = validationResult(req)
+        if (errors.isEmpty()) {
+            let form = req.body;
+            let usuario = {
+                usuario: form.email,
+                pass: bcrypt.hashSync(form.pass)
+            }
+            data.Usuario.create(usuario)
+            .then(function (result) {
+                return res.redirect("/users/login")
+            })
+            .catch(function (err) {
+                return console.log(err);
+            });
+        } else {
+
+            return res.render("login", {
+                errors: errors.mapped(),
+                old: req.body
+            })
+        }
+    },
     
-    /*
-    store: (req,  res ) => {
+    
+   /* store: (req,  res ) => {
         let errors = validationResult(req)
         if (errors.isEmpty()) {
             let form =req.body;
