@@ -5,7 +5,8 @@ const bcrypt = require("bcryptjs")
 const {body} = require('express-validator');
 
 //validaciones para el formulario de registro
-const validations= [
+
+/*const validations= [
   body("email")
   .notEmpty().withMessage("Este campo no puede estar vacio").bail()
   .isEmail()
@@ -32,7 +33,7 @@ const validations= [
   body("documento")
   .isInt(),
   body("fotoPerfil")
-  ];
+  ];*/
 
   
   
@@ -43,11 +44,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.get("/register", usuarioController.register); 
-router.post('/register', validations, usuarioController.store);
+/*router.post('/register', validations, usuarioController.store);*/
 
-router.post("/login", usuarioController.login);
+
 
 router.get("/login", usuarioController.loginForm);
+
+//ruta post del form de login
+router.post("/login", usuarioController.login);
 
 router.get("/profile", usuarioController.profile);
 

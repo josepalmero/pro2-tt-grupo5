@@ -14,9 +14,21 @@ const productoController = {
     },
 
     product_add: function(req, res){
-        res.render("product-add");
+        //controles de acceso, si el usuario no este logueado 
+        if (req.session.usuarioLogueado == undefined) {
+            return res.redirect("/users/login");
+        } else {
+            res.render("product-add");
+        };
+        //falta create
+        data.Producto.create({
+            foto:
+            nombre:
+            descripcion:
+        });
+        
     },
-      
+
       productDetail: function(req, res){
             let idProducto = req.params.id;
 
