@@ -10,8 +10,8 @@ const usuarioController = {
     //hashing
 
     registerForm: function(req, res){
-        //trae el formulario de login 
-        return res.render("")
+        //trae el formulario de register 
+        return res.render("register")
     },
 
     register: function (req, res) {
@@ -40,9 +40,13 @@ const usuarioController = {
     },
 
     loginForm: function(req, res){
-        //trae el formulario de login 
-        return res.render("login")
-    },
+        //trae el formulario de login
+        //controles de acceso si el usuario esta logueado
+        if(req.session.usuarioLogueado != undefined){
+            return res.redirect("/");
+        } else{
+            return res.render("login");
+        }},
     
     login: function (req, res) {
         let form = req.body;
@@ -51,7 +55,7 @@ const usuarioController = {
             where: [{email: form.usuario}]
         };
 
-        data.Usuario.findOne()
+        data.Usuario.findOne(filtro)
             .then(function (result) {
                 
                 if(result != null) {
@@ -61,32 +65,24 @@ const usuarioController = {
                 
                     if(check){
                         req.session.usuarioLogueado = result
+                        //cookies
                         if(form.rememberme != undefined){
-                            res.cookie("login", result.id, {maxAge: 1000 * 60 *35});
-                            return res.redirect("/");
-                        }else{
-                            return res.redirect("/");
+                            res.cookie("idUsuario", result.id, {maxAge: 1000 * 60 *35});
                         }
+                        return res.redirect("/");
                     } else{
-                        return res.send("No hay contrasenia parecida a: " + filtro);
+                        return res.send("Contrasenia incorrecta");
                     }
                 } else {
-                    return res.send("No hay mail parecidos a: " + filtro);
+                    return res.send("No hay mail parecidos a: " + form.email);
                 }
-
-            //controles de acceso si el usuario esta logueado
-            if(req.session.usuarioLogueado != undefined){
-                return res.redirect("/");
-            } else{
-                return res.render("/users/login");
-            }
-
             })   
             .catch(function (err) {
                 return console.log(err);
             });
     },
     
+    /*
     store: (req,  res ) => {
         let errors = validationResult(req)
         if (errors.isEmpty()) {
@@ -104,7 +100,7 @@ const usuarioController = {
             return console.log(err);
         });
         }
-    },
+    },*/
 
     // romper si sale se la sesion
     logout: function(req, res){

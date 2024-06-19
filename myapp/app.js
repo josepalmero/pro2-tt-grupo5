@@ -52,11 +52,9 @@ app.use(function(req, res, next){
       res.locals.usuarioLogueado
 
       return next;
-
     }).catch(function(err){
       return console.log(err);
     }); 
-
   } else {
     return next()
   }
