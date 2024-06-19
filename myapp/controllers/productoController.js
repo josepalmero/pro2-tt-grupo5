@@ -51,9 +51,7 @@ const productoController = {
             where: {
                 nombre: {[op.like]: "%" + busqueda + "%"}
             },
-            order: [
-                [['createdAt', 'DESC']]
-              ]
+            order: [['createdAt', 'DESC']]
         }
 
         data.Producto.findAll(filtrado)
@@ -83,26 +81,24 @@ const productoController = {
     // actualizar un producto en db a traves del form
     update: function(req, res) {
         let form = req.body;
-         let filtrado = {
+        
+        let filtrado = {
             where: {
                 id: form.id
             }
         } 
 
-        data.Producto.update(form, filtrado)
-        .then(function(result){
-            return res.redirect("/product/id" + form.id);
-        })
-        .catch(function(err){
-            return console.log(err);
-        });
-
         // control de acceso: editar producto
         /* let usuarioLogueado = req.session.usuarioLogueado 
 
-        data.Producto.findByPk( "chequear" )
-        if ( "id del usuario del producto" != usuarioLogueado.id) {
-            return res.send('No esta autorizado para editar este producto')
+        if ( req.session.(usuario) != undefined {
+            data.Producto.update(form, filtrado)
+            .then(function(result){
+                return res.redirect("/product/id" + form.id);
+            })
+            .catch(function(err){
+                return console.log(err);
+            });
         } else {
             return res.redirect("/producto/detalle/:id" + form.id)
         }
@@ -119,14 +115,23 @@ const productoController = {
         }
 
         // control de acceso: borrar producto
-        data.Producto.destroy(filtrado)
-        .then(function(result){
-            return res.redirect("/producto/detalle");
-        })
-        .catch(function(err){
-            return console.log(err);
-        });
-
+        /* 
+        let userId = req.session.(usuario id) 
+        if ( req.session.(usuario) != undefined {
+            data.Producto.destroy(filtrado)
+            .then(function(result){
+                return res.redirect("/")
+            })
+            .catch(function(err){
+                return console.log(err);
+            })
+        } else {
+            return res.redirect("/producto/detalle/:id" + form.id) // chequear
+        }
+        else{
+            return res.redirect("/users/login")
+        }
+        */
     }
 };
 
