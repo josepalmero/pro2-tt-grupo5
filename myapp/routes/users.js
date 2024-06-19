@@ -71,7 +71,6 @@ router.get("/register", usuarioController.register);
 /*router.post('/register', validations, usuarioController.store);*/
 
 
-
 router.get("/login", usuarioController.loginForm);
 
 //ruta post del form de login
@@ -79,6 +78,9 @@ router.post("/login", usuarioController.login);
 
 //valiodaciones del login
 router.post("/login", validations, usuarioController.storeLogin);
+
+//ruta de logout
+router.post("/logout", usuarioController.logout);
 
 router.get("/profile", usuarioController.profile);
 

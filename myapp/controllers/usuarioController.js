@@ -129,7 +129,7 @@ const usuarioController = {
     // romper si sale se la sesion
     logout: function(req, res){
         req.session.destroy();
-        res.clearCookie("login")
+        res.clearCookie("login");
         return res.redirect("/")
     },
 
