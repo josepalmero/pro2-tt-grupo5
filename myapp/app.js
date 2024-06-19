@@ -34,7 +34,7 @@ app.use(session({
 /* haders si esta o no logueado*/
 app.use(function(req, res, next){
   if(req.session.usuarioLogueado != undefined){
-    res.locals.usuarioLogueado = req.session.usuarioLogueado
+    res.locals.usuarioLogueado = req.session.usuarioLogueado;
   }
   return next()
 });

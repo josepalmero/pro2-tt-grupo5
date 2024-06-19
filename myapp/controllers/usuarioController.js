@@ -58,7 +58,6 @@ const usuarioController = {
 
         data.Usuario.findOne(filtro)
             .then(function (result) {
-                
                 if(result != null) {
                     //session no anda, y cookies tampoco 
                     //contrasenia hasheada
