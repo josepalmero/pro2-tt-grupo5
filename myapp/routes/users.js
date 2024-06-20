@@ -74,14 +74,11 @@ router.post("/register", usuarioController.registerForm);
 
 /*router.post('/register', validations, usuarioController.store);*/
 
-
+//ruta form login
 router.get("/login", usuarioController.loginForm);
 
-//ruta post del form de login
-router.post("/login", usuarioController.login);
-
-//valiodaciones del login
-router.post("/login", validations, usuarioController.storeLogin);
+//ruta post del form de login y validaciones 
+router.post("/login", validations, usuarioController.login);
 
 //ruta de logout
 router.post("/logout", usuarioController.logout);
