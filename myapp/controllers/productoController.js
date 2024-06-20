@@ -100,25 +100,31 @@ const productoController = {
                 id: form.id
             }
         } 
-
+        
         // control de acceso: editar producto
-        /* let usuarioLogueado = req.session.usuarioLogueado 
+        let usuarioLogueado = req.session.usuarioLogueado 
+        let userId = req.session.id;
 
-        if ( req.session.(usuario) != undefined {
-            data.Producto.update(form, filtrado)
-            .then(function(result){
-                return res.redirect("/product/id" + form.id);
-            })
-            .catch(function(err){
-                return console.log(err);
-            });
-        } else {
-            return res.redirect("/producto/detalle/:id" + form.id)
-        }
-        */
+        if ( req.session.usuarioLogueado != undefined) {
+            if (form.idUsuario == userId) {
+                data.Producto.update(form, filtrado)
+                .then(function(result){
+                    return res.redirect("/product/id" + form.id);
+                })
+                .catch(function(err){
+                    return console.log(err);
+                })
+            } else {
+                return
+            }
+        } 
+        else {
+            return res.redirect("/users/login")
+        } 
+        
     },
 
-    // eliminar un producto de la base de datos
+    //eliminar un producto de la base de datos
     delete: function(req, res) {
         let form = req.body
         let filtrado = {
@@ -128,20 +134,25 @@ const productoController = {
         }
 
         // control de acceso: borrar producto
-        // falta verificar si la persona que esta logueada es la misma que  creo el producto
-        let userId = req.session.id 
+        let userId = req.session.id;
+
         if (req.session.usuarioLogueado != undefined){
-            data.Producto.destroy(filtrado)
-            .then(function(result){
-                return res.redirect("/")
-            })
-            .catch(function(err){
-                return console.log(err);
-            })
-        } else {
+            if (form.idUsuario == userId) {
+                data.Producto.destroy(filtrado)
+                .then(function(result){
+                    return res.redirect("/")
+                })
+                .catch(function(err){
+                    return console.log(err);
+                })
+            } else {
+                return
+            }
+        } 
+        else {
             return res.redirect("/users/login")
         }
     }
-};
+}; 
 
 module.exports = productoController;
