@@ -127,7 +127,7 @@ const productoController = {
         }
 
         // control de acceso: borrar producto
-         
+        // falta verificar si la persona que esta logueada es la misma que  creo el producto
         let userId = req.session.id 
         if (req.session.usuarioLogueado != undefined){
             data.Producto.destroy(filtrado)
@@ -138,12 +138,8 @@ const productoController = {
                 return console.log(err);
             })
         } else {
-            return res.redirect("/producto/detalle/:id" + form.id) // chequear
-        } 
-    else{
             return res.redirect("/users/login")
         }
-        
     }
 };
 
