@@ -1,7 +1,9 @@
 const data = require("../database/models")
 
 const indexController = {
+    //home page 
     index: function(req, res){
+        //que se ordene de ultimo en prmer lugar 
         data.Producto.findAll()
         let filtro = {
             order: [["createdAt", "DESC"]]

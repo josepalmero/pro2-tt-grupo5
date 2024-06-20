@@ -58,7 +58,10 @@ const usuarioController = {
             let form = req.body;
             let usuario = {
                 usuario: form.email,
-                pass: bcrypt.hashSync(form.pass)
+                pass: bcrypt.hashSync(form.pass, 10),
+                fecha: form.fecha,
+                dni: form.dni,
+                foto: form.foto
             }
             data.Usuario.create(usuario)
             .then(function (result) {
