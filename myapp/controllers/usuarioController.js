@@ -67,7 +67,7 @@ const usuarioController = {
                         }
                         return res.redirect("/");
                     } else{
-                        return res.send("Contrasenia incorrecta");
+                        return res.send("Contrasenia incorrecta"); //entra el if pero siempre la contrasenia esta mal 
                     }
                 } else {
                     return res.send("No hay mail parecidos a: " + form.email);

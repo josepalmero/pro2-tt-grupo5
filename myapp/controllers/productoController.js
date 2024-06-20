@@ -22,7 +22,7 @@ const productoController = {
         };
         //falta create
         /*data.Producto.create({
-            foto:
+            foto: 
             nombre:
             descripcion:
         });*/
