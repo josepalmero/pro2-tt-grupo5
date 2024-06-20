@@ -139,7 +139,7 @@ const productoController = {
             })
         } else {
             return res.redirect("/users/login")
-        } 
+        }
     }
 };
 
