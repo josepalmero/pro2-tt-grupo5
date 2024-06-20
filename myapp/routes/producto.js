@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const productoController = require("../controllers/productoController");
-const {body} = require('express-validator');
+//const {body} = require('express-validator');
 
 router.get("/", productoController.product);
 

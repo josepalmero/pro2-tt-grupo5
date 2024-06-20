@@ -7,11 +7,14 @@ const { localsName } = require("ejs");
 
 
 const usuarioController = {
-    //hashing
-
     registerForm: function(req, res){
-        //trae el formulario de register 
-        return res.render("register")
+        //trae el formulario de register
+        //controles de acceso si el usuario esta logueado
+         if (req.session.usuarioLogueado != undefined) {
+            return res.redirect("/")
+        } else {
+            return res.render("register")
+        } 
     },
 
     register: function (req, res) {
@@ -30,13 +33,6 @@ const usuarioController = {
             .catch(function (err) {
                 return console.log(err);
             });*/
-
-        // el usuario logueado ya no puede acceder al form de registro
-        if (req.session.usuarioLogueado != undefined) {
-            return res.redirect("/")
-        } else {
-            return res.render("register")
-        }
     },
 
     loginForm: function(req, res){
@@ -106,26 +102,6 @@ const usuarioController = {
         }
     },
     
-    
-   /* store: (req,  res ) => {
-        let errors = validationResult(req)
-        if (errors.isEmpty()) {
-            let form =req.body;
-        let user = {
-            name:form.name,
-            email:form.email,
-            password:bcrypt.hashSync(form.password, 10)
-        }
-
-        data.User.create(User)
-        .then((result) => {
-            return res.redirect("/users/login");
-        }).catch((err) => {
-            return console.log(err);
-        });
-        }
-    },*/
-
     // romper si sale se la sesion
     logout: function(req, res){
         req.session.destroy();

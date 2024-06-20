@@ -68,6 +68,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.get("/register", usuarioController.register); 
+
+//ruta post del form de register
+router.post("/register", usuarioController.registerForm);
+
 /*router.post('/register', validations, usuarioController.store);*/
 
 
