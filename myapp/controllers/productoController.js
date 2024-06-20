@@ -21,11 +21,11 @@ const productoController = {
             res.render("product-add");
         };
         //falta create
-        data.Producto.create({
+        /*data.Producto.create({
             foto:
             nombre:
             descripcion:
-        });
+        });*/
         
     },
 
@@ -127,9 +127,9 @@ const productoController = {
         }
 
         // control de acceso: borrar producto
-        /* 
-        let userId = req.session.(usuario id) 
-        if ( req.session.(usuario) != undefined {
+         
+        let userId = req.session.id 
+        if (req.session.usuarioLogueado != undefined){
             data.Producto.destroy(filtrado)
             .then(function(result){
                 return res.redirect("/")
@@ -139,11 +139,11 @@ const productoController = {
             })
         } else {
             return res.redirect("/producto/detalle/:id" + form.id) // chequear
-        }
-        else{
+        } 
+    else{
             return res.redirect("/users/login")
         }
-        */
+        
     }
 };
 
