@@ -21,6 +21,31 @@ const productoController = {
         } else {
             res.render("product-add");
         };
+
+          // validaciones de product-add
+          let errors = validationResult(req)
+          if (errors.isEmpty()) {
+              let form = req.body;
+              let producto = {
+                foto: form.foto,
+                nombre: form.nombre,
+                descripcion: form.descripcion
+              }
+              data.Producto.create(producto)
+              .then(function (result) {
+                  return res.redirect("/")
+              })
+              .catch(function (err) {
+                  return console.log(err);
+              });
+          } else {
+  
+              return res.render("login", {
+                  errors: errors.mapped(),
+                  old: req.body
+              })
+          }
+
         //falta create
         /*data.Producto.create({
             foto: 

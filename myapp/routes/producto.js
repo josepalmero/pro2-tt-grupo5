@@ -1,7 +1,23 @@
 const express = require("express");
 const router = express.Router();
 const productoController = require("../controllers/productoController");
-//const {body} = require('express-validator');
+const {body} = require('express-validator');
+
+//validaciones de product-add
+const validations = [
+    body("archivo")
+    .notEmpty().withMessage("Debe seleccionar la imagen").bail(),
+    body("producto")
+    .notEmpty.withMessage("Debe poner el nombre del producto").bail(),
+    body("descripcion")
+    .notEmpty.withMessage("Debe poner la descripcion del producto").bail(),
+];
+
+
+
+
+
+
 
 router.get("/", productoController.product);
 
@@ -9,8 +25,8 @@ router.get("/detalle/:id", productoController.productDetail);
 
 router.get("/product_add", productoController.product_add);
 
-/* POST de cargar producto */
-router.post("/product_add", productoController.product_add);
+/* POST de cargar producto  y validaciones */
+router.post("/product_add", validations, productoController.product_add);
 
 /* POST capturar la info del formulario */ 
 router.post("/register", productoController.store);
