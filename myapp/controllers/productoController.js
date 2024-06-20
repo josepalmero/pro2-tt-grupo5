@@ -14,6 +14,7 @@ const productoController = {
     },
 
     product_add: function(req, res){
+        
         //controles de acceso, si el usuario no este logueado 
         if (req.session.usuarioLogueado == undefined) {
             return res.redirect("/users/login");

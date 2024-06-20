@@ -52,33 +52,7 @@ const usuarioController = {
             where: [{email: form.usuario}]
         };
 
-        data.Usuario.findOne(filtro)
-            .then(function (result) {
-                if(result != null) {
-                    //session no anda, y cookies tampoco 
-                    //contrasenia hasheada
-                    let check = bcrypt.compareSync(form.pass, result.contrasenia);
-                
-                    if(check){
-                        req.session.usuarioLogueado = result
-                        //cookies
-                        if(form.rememberme != undefined){
-                            res.cookie("idUsuario", result.id, {maxAge: 1000 * 60 *35});
-                        }
-                        return res.redirect("/");
-                    } else{
-                        return res.send("Contrasenia incorrecta"); //entra el if pero siempre la contrasenia esta mal 
-                    }
-                } else {
-                    return res.send("No hay mail parecidos a: " + form.email);
-                }
-            })   
-            .catch(function (err) {
-                return console.log(err);
-            });
-    },
-
-    storeLogin: function(req,res){
+        // validaciones de login
         let errors = validationResult(req)
         if (errors.isEmpty()) {
             let form = req.body;
@@ -100,7 +74,33 @@ const usuarioController = {
                 old: req.body
             })
         }
+
+        data.Usuario.findOne(filtro)
+            .then(function (result) {
+                if(result != null) {
+                    //session no anda, y cookies tampoco 
+                    //contrasenia hasheada
+                    let check = bcrypt.compareSync(form.pass, result.contrasenia);
+                
+                    if(check){
+                        req.session.usuarioLogueado = result
+                        //cookies
+                        if(filtro.rememberme != undefined){
+                            res.cookie("idUsuario", result.id, {maxAge: 1000 * 60 *35});
+                        }
+                        return res.redirect("/");
+                    } else{
+                        return res.send("Contrasenia incorrecta"); //entra el if pero siempre la contrasenia esta mal 
+                    }
+                } else {
+                    return res.send("No hay email parecidos a: " + form.email);
+                }
+            })   
+            .catch(function (err) {
+                return console.log(err);
+            });
     },
+
     
     // romper si sale se la sesion
     logout: function(req, res){

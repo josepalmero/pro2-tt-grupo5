@@ -9,6 +9,9 @@ router.get("/detalle/:id", productoController.productDetail);
 
 router.get("/product_add", productoController.product_add);
 
+/* POST de cargar producto */
+router.post("/product_add", productoController.product_add);
+
 /* POST capturar la info del formulario */ 
 router.post("/register", productoController.store);
 
