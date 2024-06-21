@@ -3,7 +3,7 @@ const router = express.Router();
 const productoController = require("../controllers/productoController");
 const {body} = require('express-validator');
 
-//validaciones de product-add
+//validaciones de product-add y editar producto
 const validations = [
     body("archivo")
     .notEmpty().withMessage("Debe seleccionar la imagen").bail(),
@@ -12,11 +12,6 @@ const validations = [
     body("descripcion")
     .notEmpty.withMessage("Debe ingresar la descripcion del producto").bail(),
 ];
-
-
-
-
-
 
 
 router.get("/", productoController.product);
@@ -38,7 +33,7 @@ router.get("/product_edit", productoController.product_edit);
 router.get("/search", productoController.search);  
 
 /* POST  recuperar info del form*/ 
-router.post("/update", productoController.update);
+router.post("/update", validations, productoController.update);
 
 /* Eliminar un producto*/
 router.post("/delete", productoController.delete); // falta la ruta de eliminar producto

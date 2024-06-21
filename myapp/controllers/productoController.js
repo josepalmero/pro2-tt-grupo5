@@ -1,5 +1,6 @@
 const data = require("../database/models");
 const op = data.Sequelize.Op;
+const { validationResult } = require('express-validator')
 
 const productoController = {
     product: function(req, res){
@@ -124,27 +125,33 @@ const productoController = {
             }
         } 
         
-        // control de acceso: editar producto
-        let usuarioLogueado = req.session.usuarioLogueado 
+        // control de acceso: editar producto 
         let userId = req.session.id;
 
-        if ( req.session.usuarioLogueado != undefined) {
-            if (form.idUsuario == userId) {
-                data.Producto.update(form, filtrado)
-                .then(function(result){
-                    return res.redirect("/product/id" + form.id);
-                })
-                .catch(function(err){
-                    return console.log(err);
-                })
-            } else {
-                return
-            }
-        } 
-        else {
-            return res.redirect("/users/login")
-        } 
-        
+        let errors = validationResult(req)
+        if (errors.isEmpty()) {
+            if ( req.session.usuarioLogueado != undefined) {
+                if (form.idUsuario == userId) {
+                    data.Producto.update(form, filtrado)
+                    .then(function(result){
+                        return res.redirect("/product/id" + form.id);
+                    })
+                    .catch(function(err){
+                        return console.log(err);
+                    })
+                } else {
+                    return res.send("No tiene permiso para editar este producto")
+                }
+            } 
+            else {
+                return res.redirect("/users/login")
+            } 
+        } else {
+            return res.render("product", {
+                errors: errors.mapped(),
+                old: req.body
+            })
+        }
     },
 
     //eliminar un producto de la base de datos
