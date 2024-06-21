@@ -5,62 +5,86 @@ const bcrypt = require("bcryptjs");
 const {body} = require('express-validator');
 
 //validaciones para el formulario de registro
-
-/*const validations= [
+const validacionesRegistro = [
   body("email")
-  .notEmpty().withMessage("Este campo no puede estar vacio").bail()
-  .isEmail()
-  .custom(function(value){
-    return db.data.findOne({
-      where: {email: value},
-    })
-    .then(function(user){
-      if(user){
-        throw new Error ('El email ingresado ya existe.')
-      }
-    })
+    .notEmpty().withMessage("Este campo no puede estar vacio").bail()
+    .isEmail()
+    .custom(function(value){
+      return data.Usuario.findOne({
+        where: {email: value},
+      })
+      .then(function(user){ // user es predeterminado?
+        if(user){
+          throw new Error ('El email ingresado ya existe')
+        }
+      })
   }),
   body("name")
-  .notEmpty().bail(),
+    .notEmpty().withMessage("Este campo no puede estar vacio").bail(),
   body("password")
-  .notEmpty().withMessage("Este campo no puede estar vacio").bail()
-  .isLength({min:4}).withMessage("La contrasenia debe tener al menos 4 caracteres")
-  .custom(function(){
-    bcrypt.hashSync(form.password, 10)
-  }),
+    .notEmpty().withMessage("Este campo no puede estar vacio").bail()
+    .isLength({min:4}).withMessage("La contrasenia debe tener al menos 4 caracteres")
+    .custom(function(){
+      bcrypt.hashSync(form.password, 10)
+    }),
   body("fechaNacimiento")
-  .isDate(),
+    .isDate(),
   body("documento")
-  .isInt(),
+    .isInt(),
   body("fotoPerfil")
-  ];*/
-
-
+    // no va nada aca dentro?
+];
 
 //validaciones de login
 const validations = [
   body("usuario")
-  .notEmpty().withMessage("Desbes ingresar tu email").bail()
-  .isEmail().withMessage("Debes completar con un email valido"),
+    .notEmpty().withMessage("Desbes ingresar tu email").bail()
+    .isEmail().withMessage("Debes completar con un email valido"),
   body("pass")
-  .notEmpty().withMessage("Debes completar la contrasenia").bail()
-  .custom(function(value, {req}){
-    return data.Usuario.findOne({
-      where: {email: req.body.email}
+    .notEmpty().withMessage("Debes completar la contrasenia").bail()
+    .custom(function(value, {req}){
+      return data.Usuario.findOne({
+        where: {email: req.body.email}
+      })
+      .then(function(usuario){
+        if(usuario){
+          //compara las contrasenias, y se es falso mandar 
+          //el mensaje al usuario especificando el error 
+        }
+      })
     })
-    .then(function(usuario){
-      if(usuario){
-        //compara las contrasenias, y se es falso mandar 
-        //el mensaje al usuario especificando el error 
-      }
-    })
-  })
 ];
 
-
-
-
-
+//validaciones para el profile edit
+const validacionesProfileEdit = [
+  body("email")
+    .notEmpty().withMessage("Este campo no puede estar vacio").bail()
+    .isEmail()
+    .custom(function(value){
+      return data.Usuario.findOne({
+        where: {email: value},
+      })
+      .then(function(user){ // user es predeterminado?
+        if(user){
+          throw new Error ('El email ingresado ya existe')
+        }
+      })
+  }),
+  body("usuario")
+    .notEmpty().withMessage("Este campo no puede estar vacio").bail(),
+  body("pass")
+    .notEmpty().withMessage("Este campo no puede estar vacio").bail()
+    .isLength({min:4}).withMessage("La contrasenia debe tener al menos 4 caracteres")
+    .custom(function(){
+      bcrypt.hashSync(form.password, 10)
+    }),
+  body("edad")
+    .isDate(),
+  body("dni")
+    .isInt(),
+  body("foto")
+    // no va nada aca dentro?
+];
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -72,7 +96,7 @@ router.get("/register", usuarioController.register);
 //ruta post del form de register
 router.post("/register", usuarioController.registerForm);
 
-/*router.post('/register', validations, usuarioController.store);*/
+router.post('/register', validacionesRegistro, usuarioController.store);  // store no existe
 
 //ruta form login
 router.get("/login", usuarioController.loginForm);
@@ -85,6 +109,6 @@ router.post("/logout", usuarioController.logout);
 
 router.get("/profile", usuarioController.profile);
 
-router.get("/profile_edit", usuarioController.profile_edit);
+router.get("/profile_edit", validacionesProfileEdit, usuarioController.profile_edit);
 
 module.exports = router;

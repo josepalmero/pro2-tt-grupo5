@@ -22,29 +22,47 @@
 				<form action="/" method="get">
 					<div>
 						<input id="email" type="email" name="email" value="" placeholder="Ingrese su email" required>
+						<% if (locals.errors && errors.email) { %>
+							<p class="error"><%= errors.email.msg %></p>
+						   <% } %>
 					</div>
 				 
 					<div>
 						<input id="user" type="text" name="usuario" value="" placeholder="Usuario" required>
+						<% if (locals.errors && errors.usuario) { %>
+							<p class="error"><%= errors.usuario.msg %></p>
+						   <% } %>
 					</div>
 				 
 				 	<div>
 						<input id="pass" type="password" name="pass" value="" placeholder="Ingrese su contraseña" required>
+						<% if (locals.errors && errors.pass) { %>
+							<p class="error"><%= errors.pass.msg %></p>
+						   <% } %>
 					</div>
 				 
 					<div>
 						<input id="fecha" type="date" name="edad" value="" placeholder="Fecha nacimiento" required>
+						<% if (locals.errors && errors.edad) { %>
+							<p class="error"><%= errors.edad.msg %></p>
+						   <% } %>
 					</div>
 				 
 					<div>
 						<input id="dni" type="number" name="dni" value="" placeholder="DNI" required>
+						<% if (locals.errors && errors.dni) { %>
+							<p class="error"><%= errors.dni.msg %></p>
+						   <% } %>
 					</div>
 				 
-					<div>
+					<div>  <!-- ruta para foto de perfil -->
 						<label for="foto">Foto de perfil:</label>
 						<input id="foto" type="file" name="foto" value="" required>	
+						<% if (locals.errors && errors.foto) { %>
+							<p class="error"><%= errors.foto.msg %></p>
+						   <% } %>
 					</div>
-				 
+					
 					<button type="submit">Enviar</button>
 				 </form>
 			</h2>

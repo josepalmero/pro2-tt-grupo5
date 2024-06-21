@@ -23,21 +23,39 @@
 					<div class="title">Registrate</div>
 					<div class="input-container ic1">
 						<input id="email" class="input" type="email" name="email" placeholder="Email:" />
+						<% if (locals.errors && errors.email) { %>
+							<p class="error"><%= errors.email.msg %></p>
+						   <% } %>
 				</div>
 					<div class="input-container ic2">
 						<input id="name" class="input" type="text" name="name" placeholder="Nombre de usuario:" />	
+						<% if (locals.errors && errors.name) { %>
+							<p class="error"><%= errors.name.msg %></p>
+						   <% } %>
 					</div>
 					<div class="input-container ic3">
 							<input id="password" class="input" type="password" name="password" placeholder="Clave" min="4" required/>
+							<% if (locals.errors && errors.password) { %>
+								<p class="error"><%= errors.password.msg %></p>
+							   <% } %>
 					</div>
 					<div class="input-container ic4">
 						<input type="date" class="input" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento">
+						<% if (locals.errors && errors.fechaNacimiento) { %>
+							<p class="error"><%= errors.fechaNacimiento.msg %></p>
+						   <% } %>
 					</div>
 					<div>
 						<input type="number" class="input" id="documento" name="documento" placeholder="Numero de Documento">
+						<% if (locals.errors && errors.documento) { %>
+							<p class="error"><%= errors.documento.msg %></p>
+						   <% } %>
 					</div>
 					<div>
 						<input type="text" class="input" id="fotoPerfil" name="fotoPerfil" placeholder="Foto de Perfil">
+						<% if (locals.errors && errors.fotoPerfil) { %>
+							<p class="error"><%= errors.fotoPerfil.msg %></p>
+						   <% } %>
 					</div>
 					<button type="text" class="submit">Crear</button>
 				</form>

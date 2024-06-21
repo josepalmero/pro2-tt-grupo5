@@ -107,7 +107,6 @@ const usuarioController = {
         }
     },
 
-    
     // romper si sale se la sesion
     logout: function(req, res){
         req.session.destroy();
@@ -129,13 +128,34 @@ const usuarioController = {
     },
 
     profile_edit: function (req, res) {
-        data.Usuario.findByPk()
-            .then(function (result) {
-                return res.render("profile-edit", { usuario: result });
+        
+        let id = req.params.id;
+        let userId = req.session.id;
+
+        // validaciones de profile edit
+        let errors = validationResult(req)
+        if (errors.isEmpty()) {
+            if (req.session.usuarioLogueado != undefined) {
+                if (id == userId) {
+                    data.Usuario.findByPk()
+                    .then(function (result) {
+                        return res.render("profile-edit", { usuario: result });
+                    })
+                    .catch(function (err) {
+                        return console.log(err);
+                    });
+                } else {
+                    return res.send("Usted no puede editar este perfil")
+                }
+            } else {
+                return res.redirect("login")
+            }
+        } else {
+            return res.render("login", {
+                errors: errors.mapped(),
+                old: req.body
             })
-            .catch(function (err) {
-                return console.log(err);
-            });
+        }
     },
 };
 
