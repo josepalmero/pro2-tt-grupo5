@@ -29,6 +29,9 @@
 				 
 					<div>
 						<input id="pass" type="password" name="pass" value="" placeholder="Ingrese su contraseña" required>
+						<% if (locals.errors && errors.pass) { %>
+							<p class="error"><%= errors.pass.msg %></p>
+						<% } %>
 					</div>
 				 
 					<div>

@@ -13,7 +13,15 @@ const productoController = {
         }); 
     },
 
+    //agregar un producto 
     product_add: function(req, res){
+        let form = req.body;
+        
+        let filtrado = {
+            where: {
+                id: form.id
+            }
+        } 
         
         //controles de acceso, si el usuario no este logueado 
         if (req.session.usuarioLogueado == undefined) {
@@ -21,6 +29,13 @@ const productoController = {
         } else {
             res.render("product-add");
         };
+
+        //falta create
+        /*data.Producto.create({
+            foto: 
+            nombre:
+            descripcion:
+        });*/
 
           // validaciones de product-add
           let errors = validationResult(req)
@@ -45,14 +60,6 @@ const productoController = {
                   old: req.body
               })
           }
-
-        //falta create
-        /*data.Producto.create({
-            foto: 
-            nombre:
-            descripcion:
-        });*/
-        
     },
 
       productDetail: function(req, res){
