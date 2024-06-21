@@ -8,9 +8,9 @@ const validations = [
     body("archivo")
     .notEmpty().withMessage("Debe seleccionar la imagen").bail(),
     body("producto")
-    .notEmpty.withMessage("Debe poner el nombre del producto").bail(),
+    .notEmpty.withMessage("Debe ingresar el nombre del producto").bail(),
     body("descripcion")
-    .notEmpty.withMessage("Debe poner la descripcion del producto").bail(),
+    .notEmpty.withMessage("Debe ingresar la descripcion del producto").bail(),
 ];
 
 

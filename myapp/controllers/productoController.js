@@ -24,31 +24,30 @@ const productoController = {
             res.render("product-add");
         };
 
-        //falta create
-        /*data.Producto.create({
-            foto: 
-            nombre:
-            descripcion:
-        });*/
-
           // validaciones de product-add
           let errors = validationResult(req)
+
           if (errors.isEmpty()) {
+
               let form = req.body;
-              let producto = {
+
+              //nose si el segundo parametro este bien 
+              let productoNuevo = {
                 foto: form.foto,
                 nombre: form.nombre,
                 descripcion: form.descripcion
               }
-              data.Producto.create(producto)
+
+              //create no se si esta bien 
+              data.Producto.create(productoNuevo)
               .then(function (result) {
-                  return res.redirect("/")
+                  return res.redirect("/producto/detalle/", + result.id)
               })
               .catch(function (err) {
                   return console.log(err);
               });
+
           } else {
-  
               return res.render("login", {
                   errors: errors.mapped(),
                   old: req.body
