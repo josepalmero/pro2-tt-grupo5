@@ -18,21 +18,40 @@ const usuarioController = {
     },
 
     register: function (req, res) {
-      /*  let form = req.body;
-        
-        // usamos bcryptjs
-        let usuario = {
-            email: form.email,
-            contrasenia: bcrypt.hashSync(form.contrasenia, 10)
-        }
+        //falta lo de createdAt
+        // validaciones de register
+        let errors = validationResult(req)
 
-        data.Usuario.create()
-            .then(function (result) {
+        if (errors.isEmpty()) {
+            let form = req.body;
+        
+            let usuarioNuevo = {
+                email: form.email,
+                name: form.name,
+                password: bcrypt.hashSync(form.password, 10),
+                fechaNacimiento: form.fechaNacimiento,
+                documento: form.documento,
+                fotoPerfil: form.fotoPerfil
+            }
+
+            if (req.session.usuarioLogueado == undefined) {
+                data.Usuario.create(usuarioNuevo)
+                .then(function (result) {
+                    return res.redirect("/users/profile");
+                })
+                .catch(function (err) {
+                    return console.log(err);
+                });
+            } else {
                 return res.redirect("/");
+            }
+        } else {
+
+            return res.render("register", {
+                errors: errors.mapped(),
+                old: req.body
             })
-            .catch(function (err) {
-                return console.log(err);
-            });*/
+        }
     },
 
     loginForm: function(req, res){
