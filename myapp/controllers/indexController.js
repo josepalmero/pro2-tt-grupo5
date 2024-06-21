@@ -4,13 +4,20 @@ const indexController = {
     //home page 
     index: function(req, res){
         //que se ordene de ultimo en prmer lugar 
-        data.Producto.findAll()
         let filtro = {
             order: [["createdAt", "DESC"]]
         }
 
-        data.Producto.findAll(filtro)
+        //ralacion entre producto y usuario 
+        let criterio = {
+            include: [{association: "usuario"}] 
+        }
+
+        //nose si esta bien 
+        data.Producto.findByPk(filtro, criterio)
         .then(function(result){
+            //tendira que hacer una compariacion entre el id del producto
+            //y el id del usuario para saber que usuario publico cada producto
             return res.render("index", {productos: result});
         }).catch(function(error){
             return console.log(error);
