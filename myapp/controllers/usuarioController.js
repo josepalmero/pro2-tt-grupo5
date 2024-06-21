@@ -80,7 +80,9 @@ const usuarioController = {
         // validaciones de login
         let errors = validationResult(req)
         if (errors.isEmpty()) {
+
             let form = req.body;
+            
             let usuario = {
                 usuario: form.email,
                 pass: bcrypt.hashSync(form.pass, 10),
@@ -88,6 +90,7 @@ const usuarioController = {
                 dni: form.dni,
                 foto: form.foto
             }
+            
             data.Usuario.create(usuario)
             .then(function (result) {
                 return res.redirect("/users/login")

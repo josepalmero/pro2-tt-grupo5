@@ -14,9 +14,7 @@ const productoController = {
     },
 
     //agregar un producto 
-    product_add: function(req, res){
-        let form = req.body;
-        
+    product_add: function(req, res){        
         //controles de acceso, si el usuario no este logueado 
         if (req.session.usuarioLogueado == undefined) {
             return res.redirect("/users/login");
@@ -33,15 +31,15 @@ const productoController = {
 
               //nose si el segundo parametro este bien 
               let productoNuevo = {
-                foto: form.foto,
-                nombre: form.nombre,
+                foto: form.archivo,
+                nombre: form.producto,
                 descripcion: form.descripcion
               }
 
               //create no se si esta bien 
-              data.Producto.create(productoNuevo)
+              data.Producto.create(form, productoNuevo)
               .then(function (result) {
-                  return res.redirect("/producto/detalle/", + result.id)
+                  return res.redirect("/producto/detalle/", + result.id) //es id??
               })
               .catch(function (err) {
                   return console.log(err);
