@@ -96,7 +96,7 @@ router.get("/register", usuarioController.register);
 //ruta post del form de register
 router.post("/register", usuarioController.registerForm);
 
-router.post('/register', validacionesRegistro, usuarioController.store);  // store no existe
+router.post('/register', validacionesRegistro, usuarioController.register);  // store no existe
 
 //ruta form login
 router.get("/login", usuarioController.loginForm);

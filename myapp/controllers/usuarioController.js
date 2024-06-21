@@ -37,7 +37,7 @@ const usuarioController = {
             if (req.session.usuarioLogueado == undefined) {
                 data.Usuario.create(usuarioNuevo)
                 .then(function (result) {
-                    return res.redirect("/users/profile");
+                    return res.redirect("/users/profile", {usuarioNuevo: result}); //es usuarioNuevo ??
                 })
                 .catch(function (err) {
                     return console.log(err);
@@ -134,16 +134,16 @@ const usuarioController = {
     },
 
     profile: function (req, res) {
-        data.Usuario.findByPk()
-            .then(function (result) {
-                return res.render("profile", {
-                    usuario: data.usuario,
-                    productos: data.productos
-                });
-            })
-            .catch(function (err) {
-                return console.log(err);
+        /*data.Usuario.findByPk()
+        .then(function (result) {
+            return res.render("profile", {
+                usuario: data.usuario, //data???j
+                productos: data.productos
             });
+        })
+        .catch(function (err) {
+            return console.log(err);
+        });*/
     },
 
     profile_edit: function (req, res) {

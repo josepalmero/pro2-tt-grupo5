@@ -3,8 +3,6 @@ const data = require("../database/models")
 const indexController = {
     //home page 
     index: function(req, res){
-        let form = req.body;
-
         //que se ordene de ultimo en prmer lugar 
         let filtro = {
             order: [["createdAt", "DESC"]]
@@ -19,7 +17,7 @@ const indexController = {
         let userId = req.session.id;
 
         //nose si esta bien y tampoco si va aca o en el controller prodcto 
-        data.Producto.findByPk(filtro, criterio)
+        /*data.Producto.findByPk(filtro, criterio)
         .then(function(result){
             if (userId == id) {
                 
@@ -29,7 +27,7 @@ const indexController = {
             return res.render("index", {productos: result});
         }).catch(function(error){
             return console.log(error);
-        })
+        })*/
     },
 
     header: function (req, res) {
