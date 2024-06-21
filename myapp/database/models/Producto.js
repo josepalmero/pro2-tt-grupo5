@@ -38,6 +38,7 @@ module.exports = function (sequelize, dataTypes ) {
     
     let Producto = sequelize.define(alias, cols, config);
 
+    //relacion entre producto y usuario
     Producto.associate = function(models) {
         Producto.belongsTo(models.Usuario , {
             as: "usuario",  // alias de la relacion 
@@ -45,6 +46,7 @@ module.exports = function (sequelize, dataTypes ) {
         });
     }
 
+    //relacion entre producto y comentarios
     Producto.associate = function(models) {
         Producto.hasMany(models.Comentario , {
             as: "comentarios", // el alias dela relacion
