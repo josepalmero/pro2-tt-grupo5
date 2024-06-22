@@ -23,7 +23,7 @@
 					<div>
 						<label for="imagen">Imagen:</label> 
 						<input id="" type="file" name="archivo" value=" " required>
-						<img src="/images/users/"><%= usuarios.foto %>
+						<img src="/images/users/<%= usuarios.foto %>">
 						<% if (locals.errors && errors.archivo) { %>
 							<p class="error"><%= errors.archivo.msg %></p>
 						<% } %>
