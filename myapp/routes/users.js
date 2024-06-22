@@ -39,16 +39,6 @@ const validations = [
     .isEmail().withMessage("Debes completar con un email valido"),
   body("pass")
     .notEmpty().withMessage("Debes completar la contrasenia").bail()
-    .custom(function(value){
-      return data.Usuario.findOne({
-        where: {email: req.body.usuario}
-      })
-      .then(function(usuario){
-        if(usuario){
-          throw new Error ('La contrasenia es incorrecta')
-        }
-      })
-    })
 ];
 
 //validaciones para el profile edit
@@ -102,6 +92,7 @@ router.post("/logout", usuarioController.logout);
 
 router.get("/profile", usuarioController.profile);
 
-router.get("/profile_edit", validacionesProfileEdit, usuarioController.profile_edit);
+//ruta post del form de profile-edit y validacione
+router.post("/profile_edit", validacionesProfileEdit, usuarioController.profile_edit);
 
 module.exports = router;

@@ -68,9 +68,9 @@ const usuarioController = {
         // validaciones de login
 
         let errors = validationResult(req)
-        let form = req.body;
 
         if (errors.isEmpty()) {
+            let form = req.body;
 
             let filtro = {
                 where: [{email: form.usuario}]
@@ -91,7 +91,7 @@ const usuarioController = {
                         return res.redirect("/");
                     }
                     } else{
-                        return res.send("Contrasenia incorrecta"); //entra el if pero siempre la contrasenia esta mal 
+                        return res.send("Contrasenia incorrecta");
                     }
                 } else {
                     return res.send("Ese email no existe, intentelo de nuevo");
@@ -154,7 +154,7 @@ const usuarioController = {
                 return res.redirect("login")
             }
         } else {
-            return res.render("login", {
+            return res.render("profile-edit", {
                 errors: errors.mapped(),
                 old: req.body
             })

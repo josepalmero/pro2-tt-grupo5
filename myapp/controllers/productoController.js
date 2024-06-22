@@ -44,7 +44,7 @@ const productoController = {
             });
 
         } else {
-            return res.render("login", {
+            return res.render("product-add", {
                 errors: errors.mapped(),
                 old: req.body
             })
