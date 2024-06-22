@@ -37,7 +37,8 @@
 							<%= productos.descripcion %>
 						</p>
 						<p>
-							Usaraio que creo el producto: <a href="/users/profile"><%= productos.usuarios %></a>
+							<% console.log(productos) %>
+							Usuario que creo el producto: <a href="/users/profile"><%= productos.idUsuario%></a>
 						</p>
 					</article>
 					<div class="col-12 col-lg-4">

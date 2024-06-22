@@ -540,4 +540,14 @@ textarea.form-input {
     width: 95%;
     margin: auto;
   }
+
+  .footer-names {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    width: 100%;
+  }
+
 }
