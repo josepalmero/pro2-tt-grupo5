@@ -118,17 +118,17 @@ const usuarioController = {
     profile: function (req, res) {
         let id = req.params.id;
 
+        let criterio = {
+            include: [ 
+                {association: "producto"},
+                {association: "comentario"}
+            ],
+            order: [["createdAt", "DESC"]]
+        }
+
         data.Usuario.findByPk(id, criterio)
-            let criterio = {
-                include: [ 
-                    {association: "producto"},
-                    {association: "comentario"}
-                ],
-                order: [["createdAt", "DESC"]]
-            }
         .then(function (result) {
-            //return res.send(result)
-            return res.render("profile", {usuarios: result, productos: result})
+            return res.render("profile", {usuario: result, productos: result})
         })
         .catch(function (err) {
             return console.log(err);

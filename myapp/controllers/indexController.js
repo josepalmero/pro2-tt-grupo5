@@ -5,7 +5,7 @@ const indexController = {
     index: function(req, res){
         //que se ordene de ultimo en prmer lugar 
         let filtro = {
-            //include: [{association: "usuario"}] ,
+            include: [{association: "usuario"}] ,
             order: [["createdAt", "DESC"]]
         }
 

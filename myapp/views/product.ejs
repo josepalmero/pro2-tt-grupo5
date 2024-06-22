@@ -15,8 +15,6 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-		    <% console.log(productos) %>
-
 			<h2 class="products-title"><%= productos.nombre %></h2> 
 			
 			<%if (locals.usuarioLogueado == productos.idUsuario ) { %> 
@@ -36,7 +34,7 @@
 				<article class="col-12 col-lg-8 product-detail-info">
 					<img src="<%= productos.foto %>" alt="" class="product-detail-img">
 					<p class="product-detail-description"><%= productos.descripcion %></p>
-					<p>Usuario que cargo el producto: <a href="/users/profile/:id<%= productos.idUsuario %>"><%= productos.idUsuario%></a></p>
+					<p>Usuario que cargo el producto: <a href="/users/profile/:id<%= productos.idUsuario %>"><%= productos.usuario.email%></a></p>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
@@ -53,11 +51,19 @@
 						<% } %>
 					</section>
 
+
 					<!-- condicion para que solo el usuario logueado pueda comentar -->
-					<form class="form" action="/producto/detalle" method="POST">
-						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
-						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
-					</form>
+					<%if (locals.usuarioLogueado != undefined ) { %> 
+						<form class="form" action="/producto/detalle" method="POST">
+							<input class="form-input" type="text" name="comentario" value="" placeholder="Agregar comentario">
+							<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+							<% if (locals.errors && errors.comentario) { %>
+								<p class="error"><%= errors.comentario %></p>
+							<% } %>
+						</form>
+						<% } %>	else { %>
+							<a href="/users/login">Debes estar logueado para poder comentar</a>
+					<% } %>
 
 				</div>
 			</div>
