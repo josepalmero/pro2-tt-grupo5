@@ -93,7 +93,8 @@ const productoController = {
 
         data.Producto.findAll(filtrado)
         .then(function(result){
-            if (result) {
+            console.log(result)
+            if (result.length >= 1) {
                 return res.render("search-results", {productos: result}) 
             } else {
                 return res.send('No hay resultados para su criterio de busqueda')
@@ -163,25 +164,14 @@ const productoController = {
             }
         }
 
-        // control de acceso: borrar producto
-        let userId = req.session.id;
-
-        if (req.session.usuarioLogueado != undefined){
-            if (form.idUsuario == userId) {
-                data.Producto.destroy(filtrado)
+        data.Producto.destroy(filtrado)
                 .then(function(result){
                     return res.redirect("/")
                 })
                 .catch(function(err){
                     return console.log(err);
                 })
-            } else {
-                return
-            }
-        } 
-        else {
-            return res.redirect("/users/login")
-        }
+        
     }
 }; 
 

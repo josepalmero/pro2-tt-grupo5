@@ -20,13 +20,20 @@
 				<h2 class="products-title">
 					<%= productos.nombre %>
 				</h2>
-				<p class="product-detail-description">
-					<a href="/producto/product_add">Editar</a>
-				</p>
 
-				<p class="product-detail-description">
-					<a href="/">Borrar</a>
-				</p>
+				<% console.log(productos)
+				console.log(usuarioLogueado) %>
+			
+				<%if (locals.usuarioLogueado.id == productos.idUsuario ) { %>
+
+					<p class="product-detail-description">
+						<a href="/producto/product_add">Editar</a>
+					</p>
+
+					<p class="product-detail-description"> 
+						<a href="/">Borrar</a>
+					</p>
+				<% } %>
 			</div>
 
 
