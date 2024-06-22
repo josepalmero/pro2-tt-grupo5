@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const data = require("../database/models");
 const usuarioController = require('../controllers/usuarioController');
 const bcrypt = require("bcryptjs");
 const {body} = require('express-validator');
@@ -23,16 +24,11 @@ const validacionesRegistro = [
     .notEmpty().withMessage("Este campo no puede estar vacio").bail(),
   body("password")
     .notEmpty().withMessage("Este campo no puede estar vacio").bail()
-    .isLength({min:4}).withMessage("La contrasenia debe tener al menos 4 caracteres")
-    .custom(function(){
-      bcrypt.hashSync(form.password, 10)
-    }),
+    .isLength({min:4}).withMessage("La contrasenia debe tener al menos 4 caracteres"),
   body("fechaNacimiento")
     .isDate(),
   body("documento")
     .isInt(),
-  body("fotoPerfil")
-    // no va nada aca dentro?
 ];
 
 //validaciones de login
@@ -43,16 +39,19 @@ const validations = [
   body("pass")
     .notEmpty().withMessage("Debes completar la contrasenia").bail()
     .custom(function(value, {req}){
+      console.log(req.body)
       return data.Usuario.findOne({
-        where: {email: req.body.email}
+        where: {email: req.body.usuario}
       })
       .then(function(usuario){
         if(usuario){
-          //compara las contrasenias, y se es falso mandar 
-          //el mensaje al usuario especificando el error 
+          let check = bcrypt.compareSync(req.body.pass, usuario.contrasenia);
+          if(check == false){
+            return false
+          }
         }
       })
-    })
+    }).withMessage("La contrasenia esta mal")
 ];
 
 //validaciones para el profile edit
@@ -90,13 +89,12 @@ const validacionesProfileEdit = [
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
-
-router.get("/register", usuarioController.register); 
+ 
 
 //ruta post del form de register
-router.post("/register", usuarioController.registerForm);
+router.get("/register", usuarioController.registerForm);
 
-router.post('/register', validacionesRegistro, usuarioController.register);  // store no existe
+router.post('/register', validacionesRegistro, usuarioController.register);
 
 //ruta form login
 router.get("/login", usuarioController.loginForm);

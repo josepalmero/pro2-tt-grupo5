@@ -18,26 +18,27 @@ const usuarioController = {
     },
 
     register: function (req, res) {
-        //falta lo de createdAt
         // validaciones de register
         let errors = validationResult(req)
 
         if (errors.isEmpty()) {
+            
             let form = req.body;
+            console.log(form)
         
             let usuarioNuevo = {
                 email: form.email,
                 name: form.name,
-                password: bcrypt.hashSync(form.password, 10),
-                fechaNacimiento: form.fechaNacimiento,
-                documento: form.documento,
-                fotoPerfil: form.fotoPerfil
+                contrasenia: bcrypt.hashSync(form.password, 10),
+                fecha: form.fechaNacimiento,
+                dni: form.documento,
+                foto: form.fotoPerfil
             }
 
             if (req.session.usuarioLogueado == undefined) {
                 data.Usuario.create(usuarioNuevo)
                 .then(function (result) {
-                    return res.redirect("/users/profile", {usuarioNuevo: result}); //es usuarioNuevo ??
+                    return res.redirect("/users/profile");
                 })
                 .catch(function (err) {
                     return console.log(err);
@@ -137,13 +138,14 @@ const usuarioController = {
         /*data.Usuario.findByPk()
         .then(function (result) {
             return res.render("profile", {
-                usuario: data.usuario, //data???j
-                productos: data.productos
+                usuario: result.usuario, 
+                productos: result.productos
             });
         })
         .catch(function (err) {
             return console.log(err);
         });*/
+        return res.send("sere")
     },
 
     profile_edit: function (req, res) {

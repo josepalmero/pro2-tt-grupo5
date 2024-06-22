@@ -5,29 +5,19 @@ const indexController = {
     index: function(req, res){
         //que se ordene de ultimo en prmer lugar 
         let filtro = {
+            //include: [{association: "usuario"}] ,
             order: [["createdAt", "DESC"]]
         }
 
         //ralacion entre producto y usuario 
-        let criterio = {
-            include: [{association: "usuario"}] 
-        }
-
-        let id = req.params.id;
-        let userId = req.session.id;
 
         //nose si esta bien y tampoco si va aca o en el controller prodcto 
-        /*data.Producto.findByPk(filtro, criterio)
+        data.Producto.findAll(filtro)
         .then(function(result){
-            if (userId == id) {
-                
-            } else {
-                
-            }
             return res.render("index", {productos: result});
         }).catch(function(error){
             return console.log(error);
-        })*/
+        })
     },
 
     header: function (req, res) {
