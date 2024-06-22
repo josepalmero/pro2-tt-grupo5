@@ -39,6 +39,16 @@ const validations = [
     .isEmail().withMessage("Debes completar con un email valido"),
   body("pass")
     .notEmpty().withMessage("Debes completar la contrasenia").bail()
+    .custom(function(value, { req }){
+      return data.Usuario.findOne({
+        where: {email: req.body.usuario}
+      })
+      .then(function(usuario){
+        if(usuario){
+          throw new Error ('La contrasenia es incorrecta')
+        }
+      })
+    })
 ];
 
 //validaciones para el profile edit
