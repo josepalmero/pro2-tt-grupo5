@@ -169,6 +169,34 @@ const productoController = {
             return console.log(err);
         })
         
+    },
+
+    comentarios: function(req,res) {
+        let errors = validationResult(req)
+        let form = req.body;
+
+        let filtrado = {
+            include: [
+                {association: "comentarioProducto"},
+                {association: "comentarioUsuario"}
+            ],
+            order: [["createdAt", "DESC"]]
+        }
+
+        if (errors.isEmpty()) {
+            data.Comentario.create(form,filtrado)
+            .then(function(result){
+                return res.redirect("/producto/detalle" + form.idPost)
+            })
+            .catch(function(err){
+                return console.log(err);
+            })
+        } else {
+            return res.render("product" + form.idPost, {
+                errors: errors.mapped(),
+                old: req.body
+            })
+        }
     }
 }; 
 

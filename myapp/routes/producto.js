@@ -6,13 +6,19 @@ const {body} = require('express-validator');
 //validaciones de product-add y editar producto
 const validations = [
     body("archivo")
-    .notEmpty().withMessage("Debe seleccionar la imagen").bail(),
+        .notEmpty().withMessage("Debe seleccionar la imagen").bail(),
     body("producto")
-    .notEmpty().withMessage("Debe ingresar el nombre del producto").bail(),
+        .notEmpty().withMessage("Debe ingresar el nombre del producto").bail(),
     body("descripcion")
-    .notEmpty().withMessage("Debe ingresar la descripcion del producto").bail(),
+        .notEmpty().withMessage("Debe ingresar la descripcion del producto").bail(),
 ];
 
+//validaciones de comentarios
+const validationsComentarios = [
+    body("comentario")
+        .notEmpty().withMessage('Debes ingresar algo. El comentario esta vacio').bail()
+        .isLength({min:3}).withMessage('el comentario debe ser mas largo')
+]
 
 router.get("/", productoController.product);
 
@@ -24,7 +30,7 @@ router.get("/product_add", productoController.product_add);
 router.post("/product_add", validations, productoController.product_add);
 
 /* POST capturar la info del formulario */ 
-router.post("/register", productoController.store); //este ruta no es de aca ?
+// router.post("/register", productoController.store); 
 
 /* Editar un producto*/
 router.get("/product_edit", productoController.product_edit);
@@ -36,7 +42,8 @@ router.get("/search", productoController.search);
 router.post("/update", validations, productoController.update);
 
 /* Eliminar un producto*/
-router.post("/delete", productoController.delete); // falta la ruta de eliminar producto
+router.post("/delete", productoController.delete);
 
-
+/* POST comentarios */
+router.post("/detalle", validationsComentarios, productoController.comentarios)
 module.exports = router;

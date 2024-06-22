@@ -38,20 +38,16 @@ module.exports = function (sequelize, dataTypes ) {
     
     let Producto = sequelize.define(alias, cols, config);
 
-    //relacion entre producto y usuario
+    //relaciones
     Producto.associate = function(models) {
         Producto.belongsTo(models.Usuario , {
             as: "usuario",  // alias de la relacion 
             foreignKey: "idUsuario"
-        });
-    }
-
-    //relacion entre producto y comentarios
-    Producto.associate = function(models) {
+        }),
         Producto.hasMany(models.Comentario , {
             as: "comentarios", // el alias dela relacion
             foreignKey: "idPost"
-        });
+        })
     }
 
     return Producto;

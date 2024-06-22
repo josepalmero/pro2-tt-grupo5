@@ -20,8 +20,9 @@
 
 				<div class="data-container col-6">
 					<div class="d-flex align-items-center ">
-						<h1 class="main-title"><%= usuario.usuario %> 
-							<a href="/users/profile_edit">
+						<h1 class="main-title">
+							<%= usuario.usuario %> 
+							<a href="/users/profile_edit<%= usuario.id %>">
 								<i class="fas fa-cog"></i>
 							</a>
 						</h1>
@@ -36,8 +37,8 @@
 					</div>
 					<ul>
 						<li>
-							<% if (locals.usuarioLogueado == usuario.id) { %>
-								<a href="/users/profile_edit">Edita tu perfil <i class="fas fa-sign-in-alt"></i></a>
+							<% if (locals.usuarioLogueado.id == usuario.id) { %>
+								<a href="/users/profile_edit<%= usuario.id %>">Edita tu perfil <i class="fas fa-sign-in-alt"></i></a>
 							<% } else { %>
 								<p>Usted no puede editar este perfil</p>
 							<% } %>
