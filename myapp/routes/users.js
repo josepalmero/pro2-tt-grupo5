@@ -4,6 +4,7 @@ const data = require("../database/models");
 const usuarioController = require('../controllers/usuarioController');
 const bcrypt = require("bcryptjs");
 const {body} = require('express-validator');
+const { where } = require('sequelize');
 
 //validaciones para el formulario de registro
 const validacionesRegistro = [
@@ -37,7 +38,17 @@ const validations = [
     .notEmpty().withMessage("Desbes ingresar tu email").bail()
     .isEmail().withMessage("Debes completar con un email valido"),
   body("pass")
-    .notEmpty().withMessage("Debes completar la contrasenia").bail(),
+    .notEmpty().withMessage("Debes completar la contrasenia").bail()
+    .custom(function(value){
+      return data.Usuario.findOne({
+        where: {email: req.body.usuario}
+      })
+      .then(function(usuario){
+        if(usuario){
+          throw new Error ('La contrasenia es incorrecta')
+        }
+      })
+    })
 ];
 
 //validaciones para el profile edit
@@ -67,8 +78,6 @@ const validacionesProfileEdit = [
     .isDate(),
   body("dni")
     .isInt(),
-  body("foto")
-    // no va nada aca dentro?
 ];
 
 /* GET users listing. */
