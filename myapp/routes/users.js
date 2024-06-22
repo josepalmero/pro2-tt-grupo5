@@ -39,7 +39,7 @@ const validations = [
     .isEmail().withMessage("Debes completar con un email valido"),
   body("pass")
     .notEmpty().withMessage("Debes completar la contrasenia").bail()
-    .custom(function(value){
+    .custom(function(value, { req }){
       return data.Usuario.findOne({
         where: {email: req.body.usuario}
       })
@@ -102,6 +102,7 @@ router.post("/logout", usuarioController.logout);
 
 router.get("/profile", usuarioController.profile);
 
-router.get("/profile_edit", validacionesProfileEdit, usuarioController.profile_edit);
+//ruta post del form de profile-edit y validacione
+router.post("/profile_edit", validacionesProfileEdit, usuarioController.profile_edit);
 
 module.exports = router;

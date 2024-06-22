@@ -24,7 +24,7 @@ router.get("/product_add", productoController.product_add);
 router.post("/product_add", validations, productoController.product_add);
 
 /* POST capturar la info del formulario */ 
-router.post("/register", productoController.store);
+router.post("/register", productoController.store); //este ruta no es de aca ?
 
 /* Editar un producto*/
 router.get("/product_edit", productoController.product_edit);
