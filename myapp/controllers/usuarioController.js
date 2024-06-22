@@ -66,58 +66,13 @@ const usuarioController = {
     },
     
     login: function (req, res) {
-        let form = req.body;
-
-        let filtro = {
-            where: [{email: form.usuario}]
-        };
-
-        data.Usuario.findOne(filtro)
-            .then(function (result) {
-                if(result != null) {
-                    //session no anda, y cookies tampoco 
-                    //contrasenia hasheada
-                    let check = bcrypt.compareSync(form.pass, result.contrasenia);
-                
-                    if(check){
-                        req.session.usuarioLogueado = result
-                        //cookies
-                        if(filtro.rememberme != undefined){
-                            res.cookie("idUsuario", result.id, {maxAge: 1000 * 60 *35});
-                        }
-                        return res.redirect("/");
-                    } else{
-                        return res.send("Contrasenia incorrecta"); //entra el if pero siempre la contrasenia esta mal 
-                    }
-                } else {
-                    return res.send("No hay email parecidos a: " + form.email);
-                }
-            })   
-            .catch(function (err) {
-                return console.log(err);
-            });
-
         // validaciones de login
         let errors = validationResult(req)
         if (errors.isEmpty()) {
+            
+            
+            return res.redirect("/");
 
-            let form = req.body;
-            
-            let usuario = {
-                usuario: form.email,
-                pass: bcrypt.hashSync(form.pass, 10),
-                fecha: form.fecha,
-                dni: form.dni,
-                foto: form.foto
-            }
-            
-            data.Usuario.create(usuario)
-            .then(function (result) {
-                return res.redirect("/users/login")
-            })
-            .catch(function (err) {
-                return console.log(err);
-            });
         } else {
 
             return res.render("login", {
@@ -145,7 +100,7 @@ const usuarioController = {
         .catch(function (err) {
             return console.log(err);
         });*/
-        return res.send("sere")
+        return res.send()
     },
 
     profile_edit: function (req, res) {

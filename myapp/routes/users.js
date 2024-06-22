@@ -46,7 +46,14 @@ const validations = [
       .then(function(usuario){
         if(usuario){
           let check = bcrypt.compareSync(req.body.pass, usuario.contrasenia);
+          console.log(check)
+
           if(check == false){
+            
+          }else{
+            if(req.body.login != undefined){
+              res.cookie("idUsuario", usuario.id, {maxAge: 1000 * 60 *35});
+            }
             return false
           }
         }
