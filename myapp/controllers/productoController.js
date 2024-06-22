@@ -4,7 +4,6 @@ const { validationResult } = require('express-validator')
 
 const productoController = {
     product: function(req, res){
-
         data.Producto.findAll()
         .then(function(result){
             return res.render("index", {producto: result});
@@ -23,35 +22,33 @@ const productoController = {
             res.render("product-add");
         };
 
-          // validaciones de product-add
-          let errors = validationResult(req)
+        // validaciones de product-add
+        let errors = validationResult(req)
 
-          if (errors.isEmpty()) {
-
-              let form = req.body;
-
-              //nose si el segundo parametro este bien 
-              let productoNuevo = {
+        if (errors.isEmpty()) {
+            let form = req.body;
+        
+            let productoNuevo = {
                 foto: form.archivo,
                 nombre: form.producto,
                 descripcion: form.descripcion
-              }
+            }
 
-              //create no se si esta bien 
-              data.Producto.create(form, productoNuevo)
-              .then(function (result) {
-                  return res.redirect("/producto/detalle/", + result.id) //es id??
-              })
-              .catch(function (err) {
-                  return console.log(err);
-              });
+            //create no se si esta bien 
+            data.Producto.create(form, productoNuevo)
+            .then(function (result) {
+                return res.redirect("/producto/detalle/", + result.id)
+            })
+            .catch(function (err) {
+                return console.log(err);
+            });
 
-          } else {
-              return res.render("login", {
-                  errors: errors.mapped(),
-                  old: req.body
-              })
-          }
+        } else {
+            return res.render("login", {
+                errors: errors.mapped(),
+                old: req.body
+            })
+        }
     },
 
       productDetail: function(req, res){
