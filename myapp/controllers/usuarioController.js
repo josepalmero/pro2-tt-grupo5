@@ -1,9 +1,8 @@
-//const   = require("sequelize");
 const data = require("../database/models");
 const bcrypt = require("bcryptjs");
 const {validationResult} = require("express-validator");
-const { Store } = require("express-session");
-const { localsName } = require("ejs");
+//const { Store } = require("express-session");
+//const { localsName } = require("ejs");
 
 
 const usuarioController = {
@@ -22,7 +21,7 @@ const usuarioController = {
         let errors = validationResult(req)
 
         if (errors.isEmpty()) {
-            
+        
             let form = req.body;
         
             let usuarioNuevo = {
@@ -86,7 +85,7 @@ const usuarioController = {
                 if(check){
                     req.session.usuarioLogueado = result
                     //cookies
-                    if(filtro.rememberme != undefined){
+                    if(filtro.login != undefined){
                         res.cookie("idUsuario", result.id, {maxAge: 1000 * 60 *35});
                         return res.redirect("/");
                     }
@@ -117,17 +116,23 @@ const usuarioController = {
     },
 
     profile: function (req, res) {
-        /*data.Usuario.findByPk()
+        let id = req.params.id;
+
+        data.Usuario.findByPk(id, criterio)
+            let criterio = {
+                include: [ 
+                    {association: "producto"},
+                    {association: "comentario"}
+                ],
+                order: [["createdAt", "DESC"]]
+            }
         .then(function (result) {
-            return res.render("profile", {
-                usuario: result.usuario, 
-                productos: result.productos
-            });
+            //return res.send(result)
+            return res.render("profile", {usuarios: result, productos: result})
         })
         .catch(function (err) {
             return console.log(err);
-        });*/
-        return res.send()
+        });
     },
 
     profile_edit: function (req, res) {

@@ -44,7 +44,7 @@ module.exports = function (sequelize, dataTypes ) {
     //relacion entre usuario y peliculas
     Usuario.associate = function(models){
         Usuario.hasMany(models.Producto, {
-            as: "productos", //alias de la relacion
+            as: "producto", //alias de la relacion
             foreignKey: "idUsuario"
         });
     }
@@ -52,7 +52,7 @@ module.exports = function (sequelize, dataTypes ) {
     //relacion entre usuario y comentarios
     Usuario.associate = function(models){
         Usuario.hasMany(models.Comentario, {
-            as: "comentarioUsuario", //alias de la relacion
+            as: "comentario", //alias de la relacion
             foreignKey: "idUsuario"
         });
     }

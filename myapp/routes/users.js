@@ -100,7 +100,7 @@ router.post("/login", validations, usuarioController.login);
 //ruta de logout
 router.post("/logout", usuarioController.logout);
 
-router.get("/profile", usuarioController.profile);
+router.get("/profile/:id", usuarioController.profile);
 
 //ruta post del form de profile-edit y validacione
 router.post("/profile_edit", validacionesProfileEdit, usuarioController.profile_edit);
