@@ -1,4 +1,4 @@
-// const   = require("sequelize");
+//const   = require("sequelize");
 const data = require("../database/models");
 const bcrypt = require("bcryptjs");
 const {validationResult} = require("express-validator");
@@ -24,7 +24,6 @@ const usuarioController = {
         if (errors.isEmpty()) {
             
             let form = req.body;
-            console.log(form)
         
             let usuarioNuevo = {
                 email: form.email,
@@ -67,20 +66,48 @@ const usuarioController = {
     
     login: function (req, res) {
         // validaciones de login
+
         let errors = validationResult(req)
+        let form = req.body;
+
         if (errors.isEmpty()) {
-            
-            
-            return res.redirect("/");
 
+            let filtro = {
+                where: [{email: form.usuario}]
+            };
+
+            data.Usuario.findOne(filtro)
+            .then(function (result) {
+                if(result != null) {
+                //session no anda, y cookies tampoco 
+                //contrasenia hasheada
+                let check = bcrypt.compareSync(form.pass, result.contrasenia);
+                    
+                if(check){
+                    req.session.usuarioLogueado = result
+                    //cookies
+                    if(filtro.rememberme != undefined){
+                        res.cookie("idUsuario", result.id, {maxAge: 1000 * 60 *35});
+                        return res.redirect("/");
+                    }
+                    } else{
+                        return res.send("Contrasenia incorrecta"); //entra el if pero siempre la contrasenia esta mal 
+                    }
+                } else {
+                    return res.send("Ese email no existe, intentelo de nuevo");
+                }
+                })   
+            .catch(function (err) {
+                return console.log(err);
+            });    
         } else {
-
             return res.render("login", {
                 errors: errors.mapped(),
                 old: req.body
             })
         }
     },
+
 
     // romper si sale se la sesion
     logout: function(req, res){

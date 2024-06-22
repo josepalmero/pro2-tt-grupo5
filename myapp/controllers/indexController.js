@@ -9,9 +9,6 @@ const indexController = {
             order: [["createdAt", "DESC"]]
         }
 
-        //ralacion entre producto y usuario 
-
-        //nose si esta bien y tampoco si va aca o en el controller prodcto 
         data.Producto.findAll(filtro)
         .then(function(result){
             return res.render("index", {productos: result});

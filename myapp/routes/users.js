@@ -37,28 +37,7 @@ const validations = [
     .notEmpty().withMessage("Desbes ingresar tu email").bail()
     .isEmail().withMessage("Debes completar con un email valido"),
   body("pass")
-    .notEmpty().withMessage("Debes completar la contrasenia").bail()
-    .custom(function(value, {req}){
-      console.log(req.body)
-      return data.Usuario.findOne({
-        where: {email: req.body.usuario}
-      })
-      .then(function(usuario){
-        if(usuario){
-          let check = bcrypt.compareSync(req.body.pass, usuario.contrasenia);
-          console.log(check)
-
-          if(check == false){
-            
-          }else{
-            if(req.body.login != undefined){
-              res.cookie("idUsuario", usuario.id, {maxAge: 1000 * 60 *35});
-            }
-            return false
-          }
-        }
-      })
-    }).withMessage("La contrasenia esta mal")
+    .notEmpty().withMessage("Debes completar la contrasenia").bail(),
 ];
 
 //validaciones para el profile edit
