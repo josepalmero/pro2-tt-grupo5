@@ -49,8 +49,7 @@ app.use(function(req, res, next){
     .then(function(result){
       //recuperar la informacion del usuario una vez q vuleve a entrar
       req.session.usuarioLogueado = result;
-      res.locals.usuarioLogueado
-
+      res.locals.usuarioLogueado = result;
       return next;
     }).catch(function(err){
       return console.log(err);

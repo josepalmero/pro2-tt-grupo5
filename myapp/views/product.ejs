@@ -15,21 +15,18 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title">
-				<%= productos.nombre %>
-			</h2> 
+			<h2 class="products-title"><%= productos.nombre %></h2> 
 			
-			<!-- condicion para que le aparezca al usuario que creo el producto solo -->
-			<p class="product-detail-description">
+			<%if (locals.usuarioLogueado.id == productos.idUsuario ) { %> 
 				<form action="/producto/product_add" method="post">
-					<input type="hidden" name="productoId" value="<%= productos.id %>">
+					<input type="hidden" name="productoId" value="">
 					<button type="submit"><a>Editar</a></button>
 				</form>
-				<form action="/" method="post">
-					<input type="hidden" name="productoId" value="<%= productos.id %>">
+				<form action="/producto/delete" method="post">
+					<input type="hidden" name="productoId" value="">
 					<button type="submit"><a>Borrar</a></button>
 				</form>
-			</p>	
+			<% } %>	
 		</div>
 
 		<div class="product-detail">

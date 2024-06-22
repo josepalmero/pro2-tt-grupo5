@@ -154,7 +154,15 @@ const productoController = {
 
     //eliminar un producto de la base de datos
     delete: function(req, res) {
+
+        let form = req.body;
         
+        let filtrado = {
+            where: {
+                id: form.id
+            }
+        } 
+
         data.Producto.destroy(filtrado)
         .then(function(result){
             return res.redirect("/")
