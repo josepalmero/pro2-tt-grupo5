@@ -81,14 +81,16 @@ const productoController = {
         
         let filtrado = {
             where: {
-                nombre: {[op.like]: "%" + busqueda + "%"}
+                [op.or]: [
+                    {nombre: {[op.like]: "%" + busqueda + "%"}},
+                    {descripcion: {[op.like]: "%" + busqueda + "%"}}
+                ]
             },
             order: [['createdAt', 'DESC']]
         }
 
         data.Producto.findAll(filtrado)
         .then(function(result){
-            console.log(result)
             if (result.length >= 1) {
                 return res.render("search-results", {productos: result}) 
             } else {
@@ -186,7 +188,7 @@ const productoController = {
         if (errors.isEmpty()) {
             data.Comentario.create(form,filtrado)
             .then(function(result){
-                return res.redirect("/producto/detalle" + form.idPost)
+                return res.redirect("/producto/detalle/" + form.idPost)
             })
             .catch(function(err){
                 return console.log(err);
