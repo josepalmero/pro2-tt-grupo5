@@ -24,20 +24,23 @@
 						<label for="imagen">Imagen:</label> 
 						<input id="" type="file" name="archivo" value=" " required>
 						<% if (locals.errors && errors.archivo) { %>
-							<p class="error"><%= errors.archivo.msg %></p>
-						<% } %>
+                            <p class="error"><%= errors.archivo.msg %></p>
+                        <% } %>
+						<!-- validaciones -->
 					</div>
 					<div>
 						<input id="" type="text" name="producto" value=" " placeholder="Nombre del Producto" required>
 						<% if (locals.errors && errors.producto) { %>
-							<p class="error"><%= errors.producto.msg %></p>
-						<% } %>
+                            <p class="error"><%= errors.producto.msg %></p>
+                        <% } %>
+						<!-- validaciones -->
 					</div>
 					<div>
 						<input id="" type="text" name="descripcion" value=" " placeholder="Descripcion" required>
 						<% if (locals.errors && errors.descripcion) { %>
-							<p class="error"><%= errors.descripcion.msg %></p>
-						<% } %>
+                            <p class="error"><%= errors.descripcion.msg %></p>
+                        <% } %>
+						<!-- validaciones -->
 					</div>
 					<div>
 						<input type="hidden" name="usuarioId" value="<%= usuarioLogueado.id %>">

@@ -26,6 +26,7 @@ const productoController = {
     product_add: function(req, res){        
         // validaciones de product-add
         let form = req.body;
+
         let errors = validationResult(req)
 
         if (errors.isEmpty()) {

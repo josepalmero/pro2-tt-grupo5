@@ -27,7 +27,7 @@ router.get("/detalle/:id", productoController.productDetail);
 router.get("/product_add", productoController.product_add_form);
 
 /* POST de cargar producto  y validaciones */
-router.post("/product_add", validations, productoController.product_add);
+router.post("/product_add", validations, productoController.product_add); 
 
 /* POST capturar la info del formulario */ 
 // router.post("/register", productoController.store); 
@@ -45,5 +45,6 @@ router.post("/update", validations, productoController.update);
 router.post("/delete", productoController.delete);
 
 /* POST comentarios */
-router.post("/detalle", validationsComentarios, productoController.comentarios)
+router.post("/detalle", validationsComentarios, productoController.comentarios);
+
 module.exports = router;
