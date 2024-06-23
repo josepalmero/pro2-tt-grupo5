@@ -6,8 +6,7 @@ const {body} = require('express-validator');
 //validaciones de product-add y editar producto
 const validations = [
     body("archivo")
-        .notEmpty().withMessage("Debe seleccionar la imagen").bail()
-        .isURL().withMessage('Debes ingresar una URl valida'),
+        .notEmpty().withMessage("Debe seleccionar la imagen").bail(),
     body("producto")
         .notEmpty().withMessage("Debe ingresar el nombre del producto").bail(),
     body("descripcion")

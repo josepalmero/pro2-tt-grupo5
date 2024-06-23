@@ -82,6 +82,8 @@ router.post("/login", usuarioController.login);
 //ruta de logout
 router.post("/logout", usuarioController.logout);
 
+router.get("/profile", usuarioController.profileForm);
+
 router.get("/profile/:id", usuarioController.profile);
 
 

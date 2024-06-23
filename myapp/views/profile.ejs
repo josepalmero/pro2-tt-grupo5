@@ -15,14 +15,14 @@
 	<section class="info-usuario container products-wrapper">
 		<div class="row">
 				<div class="img-container offset-3 col-2">
-					<img src="<%= usuario.foto_de_perfil %>" alt="foto de perfil" class="foto-perfil">
+					<img src="/images/usuarios/<%= usuario.foto_de_perfil %>" alt="foto de perfil" class="foto-perfil">
 				</div>
 
 				<div class="data-container col-6">
 					<div class="d-flex align-items-center ">
 						<h1 class="main-title">
 							<%= usuario.usuario %> 
-							<a href="/users/profile_edit<%= usuario.id %>">
+							<a href="/users/profile_edit/<%= usuario.id %>">
 								<i class="fas fa-cog"></i>
 							</a>
 						</h1>
@@ -39,7 +39,7 @@
 						<li>
 							<% if (locals.usuarioLogueado != undefined) { %>
 								<% if (locals.usuarioLogueado.id == usuario.id) { %>
-									<a href="/users/profile_edit<%= usuario.id %>">Edita tu perfil <i class="fas fa-sign-in-alt"></i></a>
+									<a href="/users/profile_edit/<%= usuarioLogueado.id %>">Edita tu perfil <i class="fas fa-sign-in-alt"></i></a>
 								<% } else { %>
 									<p>Usted no puede editar este perfil</p>
 								<% } %>
@@ -58,21 +58,21 @@
 				<h2 class="products-title">Mis productos</h2>
 			</div>
 			<!-- Show mis productos -->
-			<% for( let index = 0; index <= 11; index++ ) { %>
-				<div class="col-12 col-sm-6 col-lg-3">
-					<section class="product-box">
-						<a href="/producto/detalle/<%productos[index].id%>">
-							<figure class="product-box_image">
-								<img src="<%= productos[index].foto %>">
-							</figure>
-							<article class="product-box_data">
-								<h2><%= productos[index].nombre %></h2>
-								<p><%= productos[index].descripcion %></p>
-								<p> <%= productos.comentarios %> </p>
-							</article>
-						</a>
-					</section>
-				</div>
+			<% for( let index = 0; index <= 11; index++ ) { %>	
+					<div class="col-12 col-sm-6 col-lg-3">
+						<section class="product-box">
+							<a href="/producto/detalle/<%productos.id%>">
+								<figure class="product-box_image">
+									<img src="<%= productos.foto %>">
+								</figure>
+								<article class="product-box_data">
+									<h2><%= productos.nombre %></h2>
+									<p><%= productos.descripcion %></p>
+									<p> <%= productos.comentarios %> </p>
+								</article>
+							</a>
+						</section>
+					</div>
 			<% } %>
 		</div>
 	</div>

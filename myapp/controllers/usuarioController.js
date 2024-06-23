@@ -103,6 +103,26 @@ const usuarioController = {
         return res.redirect("/")
     },
 
+    profileForm: function(req, res){
+        let criterio = {
+            where: {email: form.usuario},
+            
+            include: [
+                {association: "producto"},
+                {association: "comentario"}
+            ]
+        }
+
+        data.Usuario.findAll(criterio)
+        .them(function(result){
+            return res.render("profil",  {usuario: result, productos: result.producto})
+        })
+        .catch(function (err) {
+            return console.log(err);
+        });
+    },
+
+
     profile: function (req, res) {
         let id = req.params.id;
 
@@ -117,7 +137,7 @@ const usuarioController = {
         .then(function (result) {
             //return res.send(result)
             return res.render("profile", {usuario: result, productos: result.producto})
-        })
+        }) 
         .catch(function (err) {
             return console.log(err);
         });
