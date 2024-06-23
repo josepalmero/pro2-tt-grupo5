@@ -56,7 +56,7 @@
 					<%if (locals.usuarioLogueado != undefined ) { %> 
 						<form class="form" action="/producto/detalle" method="POST">
 							<input class="form-input" type="text" name="comentario" value="" placeholder="Agregar comentario">
-							<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+							
 							<% if (locals.errors && errors.comentario) { %>
 								<p class="error"><%= errors.comentario %></p>
 							<% } %>
