@@ -15,11 +15,6 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-<<<<<<< HEAD
-		<% console.log(productos) %>
-
-=======
->>>>>>> 9b4a7e88c86b34f464724d613bd8b4ba653b20ac
 			<h2 class="products-title"><%= productos.nombre %></h2> 
 			
 			<%if (locals.usuarioLogueado == productos.idUsuario ) { %> 
@@ -39,7 +34,7 @@
 				<article class="col-12 col-lg-8 product-detail-info">
 					<img src="<%= productos.foto %>" alt="" class="product-detail-img">
 					<p class="product-detail-description"><%= productos.descripcion %></p>
-					<p>Usuario que cargo el producto: <a href="/users/profile/:id<%= productos.idUsuario %>"><%= productos.usuario.email%></a></p>
+					<p>Usuario que cargo el producto: <a href="/users/profile/<%= productos.idUsuario %>"><%= productos.usuario.email%></a></p>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
@@ -66,7 +61,7 @@
 								<p class="error"><%= errors.comentario %></p>
 							<% } %>
 						</form>
-						<% } %>	else { %>
+					<% } else { %>
 							<a href="/users/login">Debes estar logueado para poder comentar</a>
 					<% } %>
 

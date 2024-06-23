@@ -32,24 +32,6 @@ const validacionesRegistro = [
     .isInt(),
 ];
 
-//validaciones de login
-const validations = [
-  body("usuario")
-    .notEmpty().withMessage("Desbes ingresar tu email").bail()
-    .isEmail().withMessage("Debes completar con un email valido"),
-  body("pass")
-    .notEmpty().withMessage("Debes completar la contrasenia").bail()
-    .custom(function(value, { req }){
-      return data.Usuario.findOne({
-        where: {email: req.body.usuario}
-      })
-      .then(function(usuario){
-        if(usuario){
-          throw new Error ('La contrasenia es incorrecta')
-        }
-      })
-    })
-];
 
 //validaciones para el profile edit
 const validacionesProfileEdit = [
@@ -94,15 +76,16 @@ router.post('/register', validacionesRegistro, usuarioController.register);
 //ruta form login
 router.get("/login", usuarioController.loginForm);
 
-//ruta post del form de login y validaciones 
-router.post("/login", validations, usuarioController.login);
+//ruta post del form de login
+router.post("/login", usuarioController.login); 
 
 //ruta de logout
 router.post("/logout", usuarioController.logout);
 
 router.get("/profile/:id", usuarioController.profile);
 
+
 //ruta post del form de profile-edit y validacione
-router.post("/profile_edit", validacionesProfileEdit, usuarioController.profile_edit);
+router.post("/profile_edit/:id", validacionesProfileEdit, usuarioController.profile_edit);
 
 module.exports = router;

@@ -11,6 +11,7 @@ const indexController = {
 
         data.Producto.findAll(filtro)
         .then(function(result){
+            //return res.send(result)
             return res.render("index", {productos: result});
         }).catch(function(error){
             return console.log(error);

@@ -64,47 +64,35 @@ const usuarioController = {
     },
     
     login: function (req, res) {
-        // validaciones de login
+        let form = req.body;
 
-        let errors = validationResult(req)
+        let filtro = {
+            where: [{email: form.usuario}]
+        };
 
-        if (errors.isEmpty()) {
-            let form = req.body;
-
-            let filtro = {
-                where: [{email: form.usuario}]
-            };
-
-            data.Usuario.findOne(filtro)
-            .then(function (result) {
-                if(result != null) {
-                //session no anda, y cookies tampoco 
-                //contrasenia hasheada
-                let check = bcrypt.compareSync(form.pass, result.contrasenia);
-                    
-                if(check){
-                    req.session.usuarioLogueado = result
-                    //cookies
-                    if(filtro.login != undefined){
-                        res.cookie("idUsuario", result.id, {maxAge: 1000 * 60 *35});
-                        return res.redirect("/");
-                    }
-                    } else{
-                        return res.send("Contrasenia incorrecta");
-                    }
-                } else {
-                    return res.send("Ese email no existe, intentelo de nuevo");
+        data.Usuario.findOne(filtro)
+        .then(function (result) {
+            if(result != null) {
+            //contrasenia hasheada
+            let check = bcrypt.compareSync(form.pass, result.contrasenia);
+                
+            if(check){
+                req.session.usuarioLogueado = result
+                //cookies
+                if(filtro.login != undefined){
+                    res.cookie("idUsuario", result.id, {maxAge: 1000 * 60 *35});
                 }
-                })   
-            .catch(function (err) {
-                return console.log(err);
-            });    
-        } else {
-            return res.render("login", {
-                errors: errors.mapped(),
-                old: req.body
-            })
-        }
+                return res.redirect("/");
+                } else{
+                    return res.send("Contrasenia incorrecta");
+                }
+            } else {
+                return res.send("No hay email parecidos a: " + form.usuario);
+            }
+            })   
+        .catch(function (err) {
+            return console.log(err);
+        }); 
     },
 
 
@@ -128,7 +116,8 @@ const usuarioController = {
 
         data.Usuario.findByPk(id, criterio)
         .then(function (result) {
-            return res.render("profile", {usuario: result, productos: result})
+            //return res.send(result)
+            return res.render("profile", {usuario: result, productos: result.producto})
         })
         .catch(function (err) {
             return console.log(err);
