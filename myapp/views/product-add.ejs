@@ -19,11 +19,10 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
-				<form action="/" method="POST">
+				<form action="/producto/product_add" method="POST">
 					<div>
 						<label for="imagen">Imagen:</label> 
 						<input id="" type="file" name="archivo" value=" " required>
-						
 						<% if (locals.errors && errors.archivo) { %>
 							<p class="error"><%= errors.archivo.msg %></p>
 						<% } %>

@@ -111,7 +111,6 @@ const usuarioController = {
                 {association: "producto"},
                 {association: "comentario"}
             ],
-            order: [["createdAt", "DESC"]]
         }
 
         data.Usuario.findByPk(id, criterio)

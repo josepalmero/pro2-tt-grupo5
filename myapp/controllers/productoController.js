@@ -13,28 +13,22 @@ const productoController = {
         }); 
     },
 
-    //agregar un producto 
-    product_add: function(req, res){        
+    product_add_form: function(req, res) {
         //controles de acceso, si el usuario no este logueado 
         if (req.session.usuarioLogueado == undefined) {
             return res.redirect("/users/login");
         } else {
             res.render("product-add");
         };
+    },
 
+    //agregar un producto 
+    product_add: function(req, res){        
         // validaciones de product-add
+        let form = req.body;
         let errors = validationResult(req)
 
         if (errors.isEmpty()) {
-            let form = req.body;
-        
-            /*let productoNuevo = {
-                foto: form.archivo,
-                nombre: form.producto,
-                descripcion: form.descripcion
-            }*/
-
-            //create no se si esta bien 
             data.Producto.create(form)
             .then(function (result) {
                 return res.redirect("/producto/detalle/", + result.id)

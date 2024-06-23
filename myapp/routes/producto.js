@@ -6,7 +6,8 @@ const {body} = require('express-validator');
 //validaciones de product-add y editar producto
 const validations = [
     body("archivo")
-        .notEmpty().withMessage("Debe seleccionar la imagen").bail(),
+        .notEmpty().withMessage("Debe seleccionar la imagen").bail()
+        .isURL().withMessage('Debes ingresar una URl valida'),
     body("producto")
         .notEmpty().withMessage("Debe ingresar el nombre del producto").bail(),
     body("descripcion")
@@ -24,7 +25,7 @@ router.get("/", productoController.product);
 
 router.get("/detalle/:id", productoController.productDetail);
 
-router.get("/product_add", productoController.product_add);
+router.get("/product_add", productoController.product_add_form);
 
 /* POST de cargar producto  y validaciones */
 router.post("/product_add", validations, productoController.product_add);
