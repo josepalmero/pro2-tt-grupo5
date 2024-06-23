@@ -28,14 +28,14 @@ const productoController = {
         if (errors.isEmpty()) {
             let form = req.body;
         
-            let productoNuevo = {
+            /*let productoNuevo = {
                 foto: form.archivo,
                 nombre: form.producto,
                 descripcion: form.descripcion
-            }
+            }*/
 
             //create no se si esta bien 
-            data.Producto.create(form, productoNuevo)
+            data.Producto.create(form)
             .then(function (result) {
                 return res.redirect("/producto/detalle/", + result.id)
             })

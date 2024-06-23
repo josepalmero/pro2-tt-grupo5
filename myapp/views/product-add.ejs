@@ -23,7 +23,7 @@
 					<div>
 						<label for="imagen">Imagen:</label> 
 						<input id="" type="file" name="archivo" value=" " required>
-						<img src="/images/users/<%= usuarios.foto %>">
+						
 						<% if (locals.errors && errors.archivo) { %>
 							<p class="error"><%= errors.archivo.msg %></p>
 						<% } %>
@@ -39,6 +39,9 @@
 						<% if (locals.errors && errors.descripcion) { %>
 							<p class="error"><%= errors.descripcion.msg %></p>
 						<% } %>
+					</div>
+					<div>
+						<input type="hidden" name="usuarioId" value="<%= usuarioLogueado.id %>">
 					</div>
 					<button type="submit">Enviar</button>
 				 </form>
