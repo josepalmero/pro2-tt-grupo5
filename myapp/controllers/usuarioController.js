@@ -131,10 +131,11 @@ const usuarioController = {
 
         // validaciones de profile edit
         let errors = validationResult(req)
+        
         if (errors.isEmpty()) {
             if (req.session.usuarioLogueado != undefined) {
                 if (id == userId) {
-                    data.Usuario.findByPk()
+                    data.Usuario.findByPk(id)
                     .then(function (result) {
                         return res.render("profile-edit", { usuario: result });
                     })

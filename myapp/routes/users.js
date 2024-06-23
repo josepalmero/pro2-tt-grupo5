@@ -15,7 +15,7 @@ const validacionesRegistro = [
       return data.Usuario.findOne({
         where: {email: value},
       })
-      .then(function(user){ // user es predeterminado?
+      .then(function(user){ 
         if(user){
           throw new Error ('El email ingresado ya existe')
         }
@@ -42,8 +42,8 @@ const validacionesProfileEdit = [
       return data.Usuario.findOne({
         where: {email: value},
       })
-      .then(function(user){ // user es predeterminado?
-        if(user){
+      .then(function(usuario){
+        if(usuario){
           throw new Error ('El email ingresado ya existe')
         }
       })
@@ -86,6 +86,6 @@ router.get("/profile/:id", usuarioController.profile);
 
 
 //ruta post del form de profile-edit y validacione
-router.post("/profile_edit/:id", validacionesProfileEdit, usuarioController.profile_edit);
+router.post("/profile_edit/:id", validacionesProfileEdit, usuarioController.profile_edit); 
 
 module.exports = router;
