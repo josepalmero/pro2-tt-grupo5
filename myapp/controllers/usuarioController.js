@@ -36,7 +36,7 @@ const usuarioController = {
             if (req.session.usuarioLogueado == undefined) {
                 data.Usuario.create(usuarioNuevo)
                 .then(function (result) {
-                    return res.redirect("/users/profile");
+                    return res.redirect("/users/profile/:id"); ////esto es con /:id ????
                 })
                 .catch(function (err) {
                     return console.log(err);
@@ -63,44 +63,27 @@ const usuarioController = {
         }
     },
     
-    login: function (req, res) {
-        let form = req.body;
+    login: function (req, res){
+        let form = req.body
 
-        let filtro = {
-            where: [{email: form.usuario}]
-        };
-
-        data.Usuario.findOne(filtro)
-        .then(function (result) {
-            if(result != null) {
-            //contrasenia hasheada
-            let check = bcrypt.compareSync(form.pass, result.contrasenia);
-                
-            if(check){
-                req.session.usuarioLogueado = result
-                //cookies
-                if(filtro.login != undefined){
-                    res.cookie("idUsuario", result.id, {maxAge: 1000 * 60 *35});
-                }
-                return res.redirect("/");
-                } else{
-                    return res.send("Contrasenia incorrecta");
-                }
-            } else {
-                return res.send("No hay email parecidos a: " + form.usuario);
+        let errors = validationResult(req)
+        if(errors.isEmpty()){
+            //cookies
+            if(form.login != undefined){
+                res.cookie("idUsuario", form.id, {maxAge: 1000 * 60 *35})
             }
-            })   
-        .catch(function (err) {
-            return console.log(err);
-        }); 
+            return res.redirect("/")
+        } else{
+            return res.send("Contrasenia incorrecta")
+        }
     },
-
+    
 
     // romper si sale se la sesion
     logout: function(req, res){
         req.session.destroy();
         res.clearCookie("login");
-        return res.redirect("/")
+        return res.redirect("/");
     },
 
     profileForm: function(req, res){

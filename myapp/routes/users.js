@@ -32,6 +32,30 @@ const validacionesRegistro = [
     .isInt(),
 ];
 
+const validations = [
+  body("usuario")
+  .notEmpty().withMessage("Desbes ingresar tu email").bail()
+  .isEmail().withMessage("Debes completar con un email valido"),
+  body("pass")
+  .notEmpty().withMessage("Debes completar la contrasenia").bail()
+  .custom(function(value, { req }){
+    return data.Usuario.findOne({
+      where: {email: req.body.usuario}
+    })
+    .then(function(usuario){
+      if(usuario){
+        let check = bcrypt.compareSync(req.body.pass, usuario.contrasenia);
+        if(!check){
+          throw new Error ("Contrasenia incorrecta. Ingresa la contrasenia correcta");
+        } else {
+          req.session.usuarioLogueado = usuario;
+        }
+      } else {
+        throw new Error ("No se encontro el usuario");
+      }
+    })
+  })
+];
 
 //validaciones para el profile edit
 const validacionesProfileEdit = [
@@ -76,8 +100,8 @@ router.post('/register', validacionesRegistro, usuarioController.register);
 //ruta form login
 router.get("/login", usuarioController.loginForm);
 
-//ruta post del form de login
-router.post("/login", usuarioController.login); 
+//ruta post del form de login y validaciones
+router.post("/login", validations, usuarioController.login); 
 
 //ruta de logout
 router.post("/logout", usuarioController.logout);

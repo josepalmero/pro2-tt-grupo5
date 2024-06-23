@@ -22,10 +22,16 @@
 				<form class="form" action="/users/login" method="POST">
 					<div>
 						<input id="user" type="text" name="usuario" value="" placeholder="Usuario" required>
+						<% if (locals.errors && errors.usuario) { %>
+							<p class="error"><%= errors.usuario.msg %></p>
+						<% } %>
 					</div>
 				 
 					<div>
 						<input id="pass" type="password" name="pass" value="" placeholder="Ingrese su contraseña" required>
+						<% if (locals.errors && errors.pass) { %>
+                            <p class="error"><%= errors.pass.msg %></p>
+                        <% } %>
 					</div>
 				 
 					<div>
