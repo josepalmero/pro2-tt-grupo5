@@ -126,37 +126,65 @@ const usuarioController = {
         });
     },
 
-    profile_edit: function (req, res) {
+    profileEdit: function (req, res) {
         
         let id = req.params.id;
         let userId = req.session.id;
+
+        if (req.session.usuarioLogueado != undefined) {
+            if (id == userId) {
+                data.Usuario.findByPk(id)
+                .then(function (result) {
+                    return res.render("profile-edit", { usuario: result });
+                })
+                .catch(function (err) {
+                    return console.log(err);
+                });
+            } else {
+                return res.send("Usted no puede editar este perfil")
+            }
+        } else {
+            return res.redirect("login")
+        }
+    },
+
+    update: function (req, res) {
 
         // validaciones de profile edit
         let errors = validationResult(req)
         
         if (errors.isEmpty()) {
-            if (req.session.usuarioLogueado != undefined) {
-                if (id == userId) {
-                    data.Usuario.findByPk(id)
-                    .then(function (result) {
-                        return res.render("profile-edit", { usuario: result });
-                    })
-                    .catch(function (err) {
-                        return console.log(err);
-                    });
-                } else {
-                    return res.send("Usted no puede editar este perfil")
+            let form = req.body
+            let filtrado = {
+                where: {
+                    id: form.id
                 }
-            } else {
-                return res.redirect("login")
-            }
+            } 
+
+            /*
+            let modificaciones = {
+                email: form.email,
+                name: form.name,
+                contrasenia: bcrypt.hashSync(form.password, 10),
+                fecha: form.fechaNacimiento,
+                dni: form.documento,
+                foto: form.fotoPerfil
+            } */
+
+            data.Usuario.update(form , filtrado)
+            .then(function(result) {
+                return res.redirect("/users/profile/:id", {usuario:result}) //id?
+            })
+            .catch(function(err) {
+                return console.log(err);
+            })
         } else {
             return res.render("profile-edit", {
                 errors: errors.mapped(),
                 old: req.body
             })
         }
-    },
+    }
 };
 
 module.exports = usuarioController;

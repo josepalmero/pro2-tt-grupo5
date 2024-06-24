@@ -32,6 +32,7 @@ const validacionesRegistro = [
     .isInt(),
 ];
 
+//validaciones para el login
 const validations = [
   body("usuario")
   .notEmpty().withMessage("Desbes ingresar tu email").bail()
@@ -110,8 +111,10 @@ router.get("/profile", usuarioController.profileForm);
 
 router.get("/profile/:id", usuarioController.profile);
 
+//ruta get del form de profile-edit 
+router.get("/profile_edit/:id",  usuarioController.profileEdit); // :id va?
 
 //ruta post del form de profile-edit y validacione
-router.post("/profile_edit/:id", validacionesProfileEdit, usuarioController.profile_edit); 
+router.post("/profile_edit/:id", validacionesProfileEdit, usuarioController.update); 
 
 module.exports = router;
