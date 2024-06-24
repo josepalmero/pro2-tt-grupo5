@@ -83,8 +83,7 @@ const productoController = {
 
         data.Producto.findByPk(id)
         .then(function(result){
-            console.log(result)
-            return res.send("sere"); 
+            return res.render("product_edit", {productos: result})
         })
         .catch(function(err){
             return console.log(err);
@@ -141,15 +140,15 @@ const productoController = {
         } 
         
         // control de acceso: editar producto 
-        let userId = req.session.id;
+        let userId = req.session.usuarioLogueado.id;
 
         let errors = validationResult(req)
         if (errors.isEmpty()) {
             if ( req.session.usuarioLogueado != undefined) {
-                if (form.idUsuario == userId) {
+                if (form.id == userId) {
                     data.Producto.update(form, filtrado)
                     .then(function(result){
-                        return res.redirect("/product/id" + form.id);
+                        return res.redirect("/producto/detalle/" + form.id);
                     })
                     .catch(function(err){
                         return console.log(err);
@@ -162,7 +161,7 @@ const productoController = {
                 return res.redirect("/users/login")
             } 
         } else {
-            return res.render("product", {
+            return res.render({
                 errors: errors.mapped(),
                 old: req.body
             })

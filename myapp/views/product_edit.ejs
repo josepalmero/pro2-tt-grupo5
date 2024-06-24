@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+	<%- include("./partials/head") %>
+<body>
+	<!-- Header -->
+	<% if (locals.usuarioLogueado != undefined) { %>
+		<%- include("./partials/headerLogueado") %>
+	<% } else { %>
+		<%- include("./partials/header_deslogueado") %>
+	<% } %>
+	<!-- /Header -->
+
+	<!-- Novedades -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Editar el producto:</h2>
+			</div>
+			<!-- Show the "ultimos" products -->
+			<h2 class="col-12"> 
+				<form action="/producto/product_edit" method="POST">
+					<div>
+                        <input id="" type="hidden" name="id" value="<%= usuarioLogueado.id %>" required>
+						<label for="imagen">Imagen del producto:</label> 
+						<input id="" type="text" name="archivo" value="<%= productos.foto %>" required>
+						<% if (locals.errors && errors.archivo) { %>
+                            <p class="error"><%= errors.archivo.msg %></p>
+                        <% } %>
+						<!-- validaciones -->
+					</div>
+					<div>
+						<label for="imagen">Ingresa el nombre del producto:</label> 
+						<input id="" type="text" name="producto" value="<%= productos.nombre %>" required>
+						<% if (locals.errors && errors.producto) { %>
+                            <p class="error"><%= errors.producto.msg %></p>
+                        <% } %>
+						<!-- validaciones -->
+					</div>
+					<div>
+						<label for="imagen">Ingresa la descripcion del producto:</label> 
+						<input id="" type="text" name="descripcion" value="<%= productos.descripcion %>" required>
+						<% if (locals.errors && errors.descripcion) { %>
+                            <p class="error"><%= errors.descripcion.msg %></p>
+                        <% } %>
+						<!-- validaciones -->
+					</div>
+					<div>
+						<input type="hidden" name="usuarioId" value="">
+					</div>
+					<button type="submit">Enviar</button>
+				 </form>
+			</h2>
+
+	<!-- footer -->
+	<%- include("./partials/footer") %>
+	<!-- /footer -->
+</body>
+
+</html>

@@ -54,16 +54,16 @@ VALUES(DEFAULT,'marianoperez@gmail.com', 'contrasenia', '1990-03-17', 58325219, 
 (DEFAULT,'alan.martinez@gmail.com', 'contrasenia', '2006-09-25', 154622869, '/images/usuarios/alan.PNG', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO productos(id, idUsuario, foto, nombre, descripcion, createdAt, updatedAt, deletedAt) 
-VALUES(DEFAULT,1, '/images/products/Borcego_aliss.png', 'Borcego Alis', 'Borcego de cuero, con apliques de color plateado. Alto de caña de 27 cm.', DEFAULT, DEFAULT, DEFAULT),
-(DEFAULT,2, '/images/products/Borcego_cordon.png', 'Borcego Cordon', 'Borcego de cuero con una caña de 23,5 cm de largo, base de 7 cm de taco y cordones largos.', DEFAULT, DEFAULT, DEFAULT),
-(DEFAULT,3, '/images/products/Borcego_dip.png', 'Bercego Dip', 'Borcegos de cuero con tachas doradas, base de 2,5 cm, altura de caña de 28 cm, y 37 cm de circiunferencia.', DEFAULT, DEFAULT, DEFAULT),
-(DEFAULT,4, '/images/products/Borcego_mex.png', 'Borcego Mex', 'Boregos de cuero, con apliques plateados, taco de 5,5 cm. ', DEFAULT, DEFAULT, DEFAULT),
-(DEFAULT,5, '/images/products/Borcego_tiki.png', 'Borcego Tiki', 'Borcegos de ecocuero y de charol opaco, de caña alta.', DEFAULT, DEFAULT, DEFAULT),
-(DEFAULT,6, '/images/products/Texana_only.png', 'Texana Only', 'Texanas de cuero, con bordado y hebilla. Alto de la caña 29 cm, alto de taco 4 cm.', DEFAULT, DEFAULT, DEFAULT),
-(DEFAULT,1, '/images/products/Bota_owen.png', 'Bota Owen', 'Borcegos de cuero con hebillas, apliques de metal de caña alta y taco de 5 cm. ', DEFAULT, DEFAULT, DEFAULT),
-(DEFAULT,2, '/images/products/Bota_aliss_marron.png', 'Bota Aliss Marron', 'Borcegos de cuero, con hebillas en el costado, alto de caña de 30,5 cm y taco de 5 cm.', DEFAULT, DEFAULT, DEFAULT),
-(DEFAULT,3, '/images/products/Bota_aliss_negra.png', 'Bota Aliss Negra', 'Borcegos de cuero, con hebillas en el costado, alto de caña de 30,5 cm y taco de 5 cm.', DEFAULT, DEFAULT, DEFAULT),
-(DEFAULT,4, '/images/products/Texana_cow.png', 'Texana Cow', 'Texana negras de cuero combinadas en contratono beige. Altura de la caña 36,5 cm. y altura del taco 7 cm.', DEFAULT, DEFAULT, DEFAULT);
+VALUES(DEFAULT,1, 'Borcego_aliss.png', 'Borcego Alis', 'Borcego de cuero, con apliques de color plateado. Alto de caña de 27 cm.', DEFAULT, DEFAULT, DEFAULT),
+(DEFAULT,2, 'Borcego_cordon.png', 'Borcego Cordon', 'Borcego de cuero con una caña de 23,5 cm de largo, base de 7 cm de taco y cordones largos.', DEFAULT, DEFAULT, DEFAULT),
+(DEFAULT,3, 'Borcego_dip.png', 'Bercego Dip', 'Borcegos de cuero con tachas doradas, base de 2,5 cm, altura de caña de 28 cm, y 37 cm de circiunferencia.', DEFAULT, DEFAULT, DEFAULT),
+(DEFAULT,4, 'Borcego_mex.png', 'Borcego Mex', 'Boregos de cuero, con apliques plateados, taco de 5,5 cm. ', DEFAULT, DEFAULT, DEFAULT),
+(DEFAULT,5, 'Borcego_tiki.png', 'Borcego Tiki', 'Borcegos de ecocuero y de charol opaco, de caña alta.', DEFAULT, DEFAULT, DEFAULT),
+(DEFAULT,6, 'Texana_only.png', 'Texana Only', 'Texanas de cuero, con bordado y hebilla. Alto de la caña 29 cm, alto de taco 4 cm.', DEFAULT, DEFAULT, DEFAULT),
+(DEFAULT,1, 'Bota_owen.png', 'Bota Owen', 'Borcegos de cuero con hebillas, apliques de metal de caña alta y taco de 5 cm. ', DEFAULT, DEFAULT, DEFAULT),
+(DEFAULT,2, 'Bota_aliss_marron.png', 'Bota Aliss Marron', 'Borcegos de cuero, con hebillas en el costado, alto de caña de 30,5 cm y taco de 5 cm.', DEFAULT, DEFAULT, DEFAULT),
+(DEFAULT,3, 'Bota_aliss_negra.png', 'Bota Aliss Negra', 'Borcegos de cuero, con hebillas en el costado, alto de caña de 30,5 cm y taco de 5 cm.', DEFAULT, DEFAULT, DEFAULT),
+(DEFAULT,4, 'Texana_cow.png', 'Texana Cow', 'Texana negras de cuero combinadas en contratono beige. Altura de la caña 36,5 cm. y altura del taco 7 cm.', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO comentarios(id, idPost, idUsuario, texto, createdAt, updatedAt, deletedAt)
 VALUES(DEFAULT,10, 1 ,'Una mas linda que la otra. Me encantan!', DEFAULT, DEFAULT, DEFAULT),
