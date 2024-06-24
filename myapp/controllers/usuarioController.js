@@ -98,7 +98,7 @@ const usuarioController = {
 
         data.Usuario.findAll(criterio)
         .them(function(result){
-            return res.render("profil",  {usuario: result, productos: result.producto})
+            return res.render("profile",  {usuario: result, productos: result.producto})
         })
         .catch(function (err) {
             return console.log(err);

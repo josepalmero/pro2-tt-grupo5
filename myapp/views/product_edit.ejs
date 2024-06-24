@@ -19,9 +19,9 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
-				<form action="/producto/detalle/<%= productos.id %>" method="POST">
+				<form action="/producto/detalle" method="POST">
 					<div>
-                        <input id="" type="hidden" name="id" value="<%= usuarioLogueado.id %>" required>
+                        <input id="" type="hidden" name="id" value="<%= productos.id %>" required>
 						<label for="imagen">Imagen del producto:</label> 
 						<input id="" type="text" name="archivo" value="<%= productos.foto %>" required>
 						<% if (locals.errors && errors.archivo) { %>
@@ -48,7 +48,7 @@
 					<div>
 						<input type="hidden" name="usuarioId" value="">
 					</div>
-					<button type="submit">Enviar</button>
+					<button type="submit">Subir cambios</button>
 				 </form>
 			</h2>
 

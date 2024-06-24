@@ -107,7 +107,7 @@ router.post("/login", validations, usuarioController.login);
 //ruta de logout
 router.post("/logout", usuarioController.logout);
 
-router.get("/profile", usuarioController.profileForm);
+router.get("/profileForm", usuarioController.profileForm);
 
 router.get("/profile/:id", usuarioController.profile);
 
