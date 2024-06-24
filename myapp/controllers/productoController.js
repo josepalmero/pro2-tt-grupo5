@@ -26,19 +26,28 @@ const productoController = {
     product_add: function(req, res){        
         // validaciones de product-add
         let form = req.body;
-
+        console.log(form)
         let errors = validationResult(req)
 
+        let productoNuevo = {
+            idUsuario: form.id,
+            foto: form.archivo,
+            nombre: form.producto,
+            descripcion: form.descripcion
+        }
+
         if (errors.isEmpty()) {
-            data.Producto.create(form)
+            data.Producto.create(productoNuevo)
             .then(function (result) {
-                return res.redirect("/producto/detalle/", + result.id)
+                console.log(result)
+                return res.redirect("/producto/detalle/" + result.id)
             })
             .catch(function (err) {
                 return console.log(err);
             });
 
         } else {
+            console.log("hola")
             return res.render("product-add", {
                 errors: errors.mapped(),
                 old: req.body
@@ -52,7 +61,10 @@ const productoController = {
             let criterio = {
                 include: [
                     {association: "usuario"},  // el alias de la relacion 
-                    {association: "comentarios"} // relacion para los comentarios
+                    {association: "comentarios", // relacion para los comentarios
+                include: [
+                    {association: "comentarioUsuario"}
+                ]} 
                 ],
             }
 
@@ -66,7 +78,17 @@ const productoController = {
         },
 
     product_edit: function(req, res){
-        res.render('product_edit');
+        //queremos redirigirlo al formulario para editar el producto
+        let id = req.params.productoId
+
+        data.Producto.findByPk(id)
+        .then(function(result){
+            console.log(result)
+            return res.send("sere"); 
+        })
+        .catch(function(err){
+            return console.log(err);
+        });
     },
 
     //  buscador de productos
@@ -151,10 +173,10 @@ const productoController = {
     delete: function(req, res) {
 
         let form = req.body;
-        
+        console.log(form)
         let filtrado = {
             where: {
-                id: form.id
+                id: form.productoId
             }
         } 
 
@@ -172,24 +194,22 @@ const productoController = {
         let errors = validationResult(req)
         let form = req.body;
 
-        let filtrado = {
-            include: [
-                {association: "comentarioProducto"},
-                {association: "comentarioUsuario"}
-            ],
-            order: [["createdAt", "DESC"]]
+        let comentarioNuevo = {
+            texto: form.comentario,
+            idUsuario: form.idUsuario,
+            idPost: form.idProducto
         }
 
         if (errors.isEmpty()) {
-            data.Comentario.create(form,filtrado)
+            data.Comentario.create(comentarioNuevo)
             .then(function(result){
-                return res.redirect("/producto/detalle/" + form.idPost)
+                return res.redirect("/producto/detalle/" + form.idProducto)
             })
             .catch(function(err){
                 return console.log(err);
             })
         } else {
-            return res.render("product" + form.idPost, {
+            return res.send( {
                 errors: errors.mapped(),
                 old: req.body
             })

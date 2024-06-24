@@ -36,7 +36,7 @@ router.post("/product_add", validations, productoController.product_add);
 router.get("/search", productoController.search);  
 
 /* Editar un producto*/
-router.get("/product_edit", productoController.product_edit);
+router.get("/product_edit/:productoId", productoController.product_edit);
 
 /* POST de Editar un producto recuperar info del form*/ 
 router.post("/product_edit", validations, productoController.update);

@@ -16,16 +16,14 @@
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"><%= productos.nombre %></h2> 
-			
-			<%if (locals.usuarioLogueado == productos.idUsuario ) { %> 
-				<form action="/producto/product_add" method="post">
-					<input type="hidden" name="productoId" value="<%= productos.id %>">
-					<button type="submit"><a>Editar</a></button>
-				</form>
-				<form action="/producto/delete" method="post">
-					<input type="hidden" name="productoId" value="<%= productos.usuario.id %>">
-					<button type="submit"><a>Borrar</a></button>
-				</form>
+			<% if (locals.usuarioLogueado != undefined) { %>
+				<%if (locals.usuarioLogueado.id == productos.idUsuario ) { %> 
+					<a href="/producto/product_edit/<%= productos.id %>">Editar</a>
+					<form action="/producto/delete" method="post">
+						<input type="hidden" name="productoId" value="<%= productos.usuario.id %>">
+						<button type="submit"><a>Borrar</a></button>
+					</form>
+				<% } %>	
 			<% } %>	
 		</div>
 
@@ -38,13 +36,13 @@
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<% for( let index=0; index < 4; index++ ) { %>
+						<% for( let index=0; index < productos.comentarios.length ; index++ ) { %>
 							<article>
-								<img src="<%= productos.comentarios.foto_de_perfil %>" alt="">
+								<img src="<%= productos.comentarios[index].comentarioUsuario.foto %>" alt="">
 								<div class="data">
 									<p class="user">
-										<strong><a href="/users/profile/:id"><%= productos.comentarios.nombre_de_usuario %></a></strong>
-										<%= productos.comentarios.texto %>
+										<strong><a href="/users/profile/<%= productos.comentarios[index].comentarioUsuario.id %>"><%= productos.comentarios[index].comentarioUsuario.email %></a></strong>
+										<%= productos.comentarios[index].texto %>
 									</p>
 								</div>
 							</article>
@@ -60,6 +58,8 @@
 							<% if (locals.errors && errors.comentario) { %>
 								<p class="error"><%= errors.comentario %></p>
 							<% } %>
+							<input class="form-input" type="hidden" name="idUsuario" value="<%= usuarioLogueado.id %>" >
+							<input class="form-input" type="hidden" name="idProducto" value="<%= productos.id %>" >
 							<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 						</form>
 					<% } else { %>
