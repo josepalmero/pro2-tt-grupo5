@@ -34,8 +34,8 @@
 							<article class="product-box_data">
 								<h2><%= productos[index].nombre %></h2>
 								<p><%= productos[index].descripcion %></p>
-								<p> Comentarios: 12 </p> <!-- FALTA QUE SE VEA CUANTOS COMENTARIOS TIENE CADA PRODUCTO -->
-								<p>Usuario que cargo el producto: <a href="/users/profile/"></a></p> <!-- FALTA QUE SE VEA quien creo el  PRODUCTO -->
+								<p> Comentarios: <%= productos[index].comentarios.length %></p> 
+								<p>Usuario que cargo el producto: <a href="/users/profile/<%= productos[index].idUsuario %>"><%= productos[index].usuario.email%></a></p>
 							</article>
 						</a>
 					</section>
@@ -62,8 +62,8 @@
 							<article class="product-box_data">
 								<h2><%= productos[index].nombre %></h2>
 								<p><%= productos[index].descripcion %></p>
-								<p>Comentarios: 12</p> <!-- FALTA QUE SE VEA CUANTOS COMENTARIOS TIENE CADA PRODUCTO -->
-								<p>Usuario que cargo el producto: <a href="/users/profile/"></a></p> <!-- FALTA QUE SE VEA quien creo el  PRODUCTO -->
+								<p>Comentarios: <%= productos[index].comentarios.length %></a></p> 
+								<p>Usuario que cargo el producto: <a href="/users/profile/<%= productos[index].idUsuario %>"><%= productos[index].usuario.email%></a></p> 
 							</article>
 						</a>
 					</section>
