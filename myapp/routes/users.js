@@ -45,7 +45,7 @@ const validations = [
     .then(function(usuario){
       if(usuario){
         let check = bcrypt.compareSync(req.body.pass, usuario.contrasenia);
-        if(!check){
+        if(check == false){
           throw new Error ("Contrasenia incorrecta. Ingresa la contrasenia correcta");
         } else {
           req.session.usuarioLogueado = usuario;

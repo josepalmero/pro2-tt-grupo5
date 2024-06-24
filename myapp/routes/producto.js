@@ -20,26 +20,26 @@ const validationsComentarios = [
         .isLength({min:3}).withMessage('el comentario debe ser mas largo')
 ]
 
+
 router.get("/", productoController.product);
 
+/* detalle del producto */
 router.get("/detalle/:id", productoController.productDetail);
 
+/* cargar producto */
 router.get("/product_add", productoController.product_add_form);
 
 /* POST de cargar producto  y validaciones */
 router.post("/product_add", validations, productoController.product_add); 
 
-/* POST capturar la info del formulario */ 
-// router.post("/register", productoController.store); 
+/* Buscar un producto */ 
+router.get("/search", productoController.search);  
 
 /* Editar un producto*/
 router.get("/product_edit", productoController.product_edit);
 
-/* Buscar un producto */ 
-router.get("/search", productoController.search);  
-
-/* POST  recuperar info del form*/ 
-router.post("/update", validations, productoController.update);
+/* POST de Editar un producto recuperar info del form*/ 
+router.post("/product_edit", validations, productoController.update);
 
 /* Eliminar un producto*/
 router.post("/delete", productoController.delete);
