@@ -172,7 +172,7 @@ const productoController = {
     delete: function(req, res) {
 
         let form = req.body;
-        console.log(form)
+       
         let filtrado = {
             where: {
                 id: form.productoId

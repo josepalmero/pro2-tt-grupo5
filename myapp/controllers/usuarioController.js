@@ -129,7 +129,7 @@ const usuarioController = {
     profileEdit: function (req, res) {
         
         let id = req.params.id;
-        let userId = req.session.id;
+        let userId = req.session.usuarioLogueado.id;
 
         if (req.session.usuarioLogueado != undefined) {
             if (id == userId) {
@@ -161,25 +161,17 @@ const usuarioController = {
                 }
             } 
 
-            /*
-            let modificaciones = {
-                email: form.email,
-                name: form.name,
-                contrasenia: bcrypt.hashSync(form.password, 10),
-                fecha: form.fechaNacimiento,
-                dni: form.documento,
-                foto: form.fotoPerfil
-            } */
+            let userId = req.session.usuarioLogueado.id;
 
             data.Usuario.update(form , filtrado)
             .then(function(result) {
-                return res.redirect("/users/profile/:id", {usuario:result}) //id?
+                return res.redirect("/users/profile") 
             })
             .catch(function(err) {
                 return console.log(err);
             })
         } else {
-            return res.render("profile-edit", {
+            return res.render("profile", {
                 errors: errors.mapped(),
                 old: req.body
             })

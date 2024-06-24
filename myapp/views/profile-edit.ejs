@@ -19,47 +19,37 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
-				<form action="/" method="post">
+				<form action="/users/profile/<%= usuarioLogueado.id %>" method="post">
 					<div>
-						<input id="email" type="email" name="email" value="" placeholder="Ingrese su email" required>
+						<input id="" type="hidden" name="id" value="<%= usuarioLogueado.id %>" required>
+						<label for="foto">Ingresar nuevo email:</label>
+						<input id="email" type="email" name="email" value="<%= usuario.email %>" required>
 						<% if (locals.errors && errors.email) { %>
 							<p class="error"><%= errors.email.msg %></p>
 						   <% } %>
 					</div>
 				 
-					<div>
-						<input id="user" type="text" name="usuario" value="" placeholder="Usuario" required>
-						<% if (locals.errors && errors.usuario) { %>
-							<p class="error"><%= errors.usuario.msg %></p>
-						   <% } %>
-					</div>
-				 
 				 	<div>
-						<input id="pass" type="password" name="pass" value="" placeholder="Ingrese su contraseña" required>
+						<label for="foto">Ingresar nueva contrasenia:</label>
+						<input id="pass" type="password" name="pass" value="<%= usuario.contrasenia %>" required>
 						<% if (locals.errors && errors.pass) { %>
 							<p class="error"><%= errors.pass.msg %></p>
 						   <% } %>
 					</div>
 				 
 					<div>
-						<input id="fecha" type="date" name="edad" value="" placeholder="Fecha nacimiento" required>
+						<label for="foto">Ingresar nueva fecha nacimiento:</label>
+						<input id="fecha" type="date" name="edad" value="<%= usuario.fecha %>" required>
 						<% if (locals.errors && errors.edad) { %>
 							<p class="error"><%= errors.edad.msg %></p>
 						   <% } %>
 					</div>
 				 
 					<div>
-						<input id="dni" type="number" name="dni" value="" placeholder="DNI" required>
+						<label for="foto">Ingresar nuevo dni:</label>
+						<input id="dni" type="number" name="dni" value="<%= usuario.dni %>"  required>
 						<% if (locals.errors && errors.dni) { %>
 							<p class="error"><%= errors.dni.msg %></p>
-						   <% } %>
-					</div>
-				 
-					<div>  <!-- ruta para foto de perfil -->
-						<label for="foto">Foto de perfil:</label>
-						<input id="foto" type="file" name="foto" value="" required>	
-						<% if (locals.errors && errors.foto) { %>
-							<p class="error"><%= errors.foto.msg %></p>
 						   <% } %>
 					</div>
 					

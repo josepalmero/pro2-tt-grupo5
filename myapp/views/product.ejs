@@ -19,8 +19,8 @@
 			<% if (locals.usuarioLogueado != undefined) { %>
 				<%if (locals.usuarioLogueado.id == productos.idUsuario ) { %> 
 					<a href="/producto/product_edit/<%= productos.id %>">Editar</a>
-					<form action="/producto/delete" method="post">
-						<input type="hidden" name="productoId" value="<%= productos.usuario.id %>">
+					<form action="/" method="post">
+						<input type="hidden" name="productoId" value="<%= productos.id %>">
 						<button type="submit"><a>Borrar</a></button>
 					</form>
 				<% } %>	

@@ -42,7 +42,7 @@ router.get("/product_edit/:productoId", productoController.product_edit);
 router.post("/product_edit", validations, productoController.update);
 
 /* Eliminar un producto*/
-router.post("/delete", productoController.delete);
+router.post("/", productoController.delete);
 
 /* POST comentarios */
 router.post("/detalle", validationsComentarios, productoController.comentarios);

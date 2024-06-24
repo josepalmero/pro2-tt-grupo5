@@ -26,12 +26,6 @@
 						<% if (locals.errors && errors.email) { %>
 							<p class="error"><%= errors.email.msg %></p>
 						   <% } %>
-				</div>
-					<div class="input-container ic2">
-						<input id="name" class="input" type="text" name="name" placeholder="Nombre de usuario:" />	
-						<% if (locals.errors && errors.name) { %>
-							<p class="error"><%= errors.name.msg %></p>
-						   <% } %>
 					</div>
 					<div class="input-container ic3">
 							<input id="password" class="input" type="password" name="password" placeholder="Clave" min="4" required/>
