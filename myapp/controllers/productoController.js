@@ -26,7 +26,6 @@ const productoController = {
     product_add: function(req, res){        
         // validaciones de product-add
         let form = req.body;
-        console.log(form)
         let errors = validationResult(req)
 
         let productoNuevo = {
@@ -39,7 +38,6 @@ const productoController = {
         if (errors.isEmpty()) {
             data.Producto.create(productoNuevo)
             .then(function (result) {
-                console.log(result)
                 return res.redirect("/producto/detalle/" + result.id)
             })
             .catch(function (err) {
@@ -47,7 +45,6 @@ const productoController = {
             });
 
         } else {
-            console.log("hola")
             return res.render("product-add", {
                 errors: errors.mapped(),
                 old: req.body

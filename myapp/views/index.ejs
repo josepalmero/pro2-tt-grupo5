@@ -29,7 +29,7 @@
 					<section class="product-box">
 						<a href="/producto/detalle/<%= productos[index].id %>" >
 							<figure class="product-box_image">
-								<img src="<%= productos[index].foto %>">
+								<img src="images/products/<%= productos[index].foto %>"> 
 							</figure>
 							<article class="product-box_data">
 								<h2><%= productos[index].nombre %></h2>
@@ -63,7 +63,7 @@
 								<h2><%= productos[index].nombre %></h2>
 								<p><%= productos[index].descripcion %></p>
 								<p>Comentarios: <%= productos[index].comentarios.length %></a></p> 
-								<p>Usuario que cargo el producto: <a href="/users/profile/<%= productos[index].idUsuario %>"><%= productos[index].usuario.email%></a></p> 
+								<p>Usuario que cargo el producto: <a href="/users/profile/<%= productos[index].idUsuario %>"><%= productos[index].usuario.email %></a></p> 
 							</article>
 						</a>
 					</section>
