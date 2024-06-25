@@ -107,14 +107,12 @@ router.post("/login", validations, usuarioController.login);
 //ruta de logout
 router.post("/logout", usuarioController.logout);
 
-router.get("/profileForm", usuarioController.profileForm);
+//ruta post del form de profile-edit y validacione
+router.post("/profile_edit", validacionesProfileEdit, usuarioController.update); 
 
 router.get("/profile/:id", usuarioController.profile);
 
 //ruta get del form de profile-edit 
 router.get("/profile_edit/:id",  usuarioController.profileEdit); 
-
-//ruta post del form de profile-edit y validacione
-router.post("/profile_edit", validacionesProfileEdit, usuarioController.update); 
 
 module.exports = router;

@@ -145,7 +145,7 @@ const productoController = {
                 if (form.id == userId) {
                     data.Producto.update(form, filtrado)
                     .then(function(result){
-                        return res.redirect("/producto/detalle/" + form.id);
+                        return res.redirect("/producto/update/" + req.params.id);
                     })
                     .catch(function(err){
                         return console.log(err);
@@ -183,7 +183,6 @@ const productoController = {
         .catch(function(err){
             return console.log(err);
         })
-        
     },
 
     comentarios: function(req,res) {

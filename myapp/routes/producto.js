@@ -39,12 +39,12 @@ router.get("/search", productoController.search);
 router.get("/product_edit/:productoId", productoController.product_edit);
 
 /* POST de Editar un producto recuperar info del form*/ 
-router.post("/product_edit", validations, productoController.update);
+router.post("/update/:id", validations, productoController.update);
 
 /* Eliminar un producto*/
-router.post("/", productoController.delete);
+router.post("/borrar", productoController.delete);
 
 /* POST comentarios */
-router.post("/detalle", validationsComentarios, productoController.comentarios);
+router.post("/comentario", validationsComentarios, productoController.comentarios);
 
 module.exports = router;

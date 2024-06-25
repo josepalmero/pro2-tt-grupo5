@@ -19,7 +19,7 @@
 			<% if (locals.usuarioLogueado != undefined) { %>
 				<%if (locals.usuarioLogueado.id == productos.idUsuario ) { %> 
 					<a href="/producto/product_edit/<%= productos.id %>">Editar</a>
-					<form action="/" method="post">
+					<form action="/producto/borrar" method="post">
 						<input type="hidden" name="productoId" value="<%= productos.id %>">
 						<button type="submit"><a>Borrar</a></button>
 					</form>
@@ -52,7 +52,7 @@
 
 					<!-- condicion para que solo el usuario logueado pueda comentar -->
 					<%if (locals.usuarioLogueado != undefined ) { %> 
-						<form class="form" action="/producto/detalle" method="POST">
+						<form class="form" action="/producto/comentario" method="POST">
 							<input class="form-input" type="text" name="comentario" value="" placeholder="Agregar comentario">
 							
 							<% if (locals.errors && errors.comentario) { %>
